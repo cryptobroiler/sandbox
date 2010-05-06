@@ -262,7 +262,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ArithmeticPredicate" eSuperTypes="#//Formulae/Atom"/>
     <eClassifiers xsi:type="ecore:EClass" name="BooleanConstant" eSuperTypes="#//Formulae/Constant"/>
     <eClassifiers xsi:type="ecore:EClass" name="ClassName" eSuperTypes="#//Formulae/Constant">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="nameOfClass" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="classNameOf" lowerBound="1"
           eType="#//ClassDef"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Formulae/NonConstant">

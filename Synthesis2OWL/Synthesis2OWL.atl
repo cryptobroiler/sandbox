@@ -50,13 +50,13 @@ helper context Synthesis!ClassDef def: isUnionClass() : Boolean =
 	if self.hasInvariant() then
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
-		if p.oclIsTypeOf(Synthesis!Predicate) then
-		   if p.name = '<=' then
+		if p.oclIsTypeOf(Synthesis!SetPredicate) then
+		   if p.symbol = '<=' then
 		   let pterms:Sequence(Synthesis!Term) = p.terms->asSequence()
 		   in
 		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassName)
-				   and p.terms->at(2)->oclIsTypeOf(Synthesis!SetPredicate) then
-				   if p.terms->at(2).symbol = 'union' then
+				   and p.terms->at(2)->oclIsTypeOf(Synthesis!BuiltInFunction) then
+				   if p.terms->at(2).name = 'union' then
 				      true
 				   else 
 				   	  false
@@ -122,10 +122,10 @@ helper context Synthesis!Term def: extractClassesRecursive() : Sequence(Synthesi
 		
 	
 helper context Synthesis!ClassDef def: getClassesFromPredicativeSpec() : Sequence( Synthesis!ClassDef )	=
-	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+	let p : Synthesis!Atom = self.getInvariant().predicativeSpec
 	in
 		--p.terms->asSequence()->select(t | t.oclIsTypeOf(Synthesis!Predicate))->first().terms->asSequence()->select(t|t.oclIsTypeOf(Synthesis!ClassDef));
-		p.terms->asSequence()->select(t | t.oclIsTypeOf(Synthesis!Predicate))->first().extractClassesRecursive();
+		p.terms->asSequence()->select(t | t.oclIsTypeOf(Synthesis!BuiltInFunction))->first().extractClassesRecursive();
 	  
 helper def: getIntegerURI() : OclAny =
 	thisModule.resolveTemp( 
