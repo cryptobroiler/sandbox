@@ -133,6 +133,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="selector" eType="#//SelectorDef"
         eOpposite="#//SelectorDef/selectorOf"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicativeSpec" eType="#//Formulae/Formula"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//Programs/Program"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectorDef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
