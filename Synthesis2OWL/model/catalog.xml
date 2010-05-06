@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog id="file:/Users/deus/Development/eclipse-mdl/Synthesis2OWL/model/" prefer="public" xml:base="file:/Users/deus/Development/eclipse-mdl/Synthesis2OWL/model/" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <uri name="http://owlodm.ontoware.org/OWL2" uri="owl2.owl"/>
-</catalog>

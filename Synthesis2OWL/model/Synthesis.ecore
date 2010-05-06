@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Synthesis"
-    nsURI="Synthesis" nsPrefix="syn">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Synthes"
+    nsURI="http://Synthesis.ecore" nsPrefix="synthes">
   <eClassifiers xsi:type="ecore:EClass" name="SchemaDef" eSuperTypes="#//ModuleDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modules" upperBound="-1"
         eType="#//ModuleDef" eOpposite="#//ModuleDef/schema"/>
@@ -208,7 +208,7 @@
           eType="#//Programs/Block" containment="true"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Formulae" nsURI="Formulae" nsPrefix="syn-form">
+  <eSubpackages name="Formulae" nsURI="http:///Synthesis.ecore/Formulae" nsPrefix="syn-form">
     <eClassifiers xsi:type="ecore:EClass" name="QuantifiedFormula" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
           eType="#//Formulae/Formula" containment="true"/>
