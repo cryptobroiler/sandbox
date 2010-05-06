@@ -22,12 +22,12 @@ helper context Synthesis!ClassDef def: isIntersectionClass() : Boolean =
 	if self.hasInvariant() then
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
-		if p.oclIsTypeOf(Synthesis!Predicate) then
-		   if p.name = '<=' then
+		if p.oclIsTypeOf(Synthesis!SetPredicate) then
+		   if p.symbol = '<=' then
 		   let pterms:Sequence(Synthesis!Term) = p.terms->asSequence()
 		   in
-		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
-				   and p.terms->at(2)->oclIsTypeOf(Synthesis!Predicate) then
+		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassName)
+				   and p.terms->at(2)->oclIsTypeOf(Synthesis!BuiltInFunction) then
 				   if p.terms->at(2).name = 'intersect' then
 				      true
 				   else 
@@ -54,9 +54,9 @@ helper context Synthesis!ClassDef def: isUnionClass() : Boolean =
 		   if p.name = '<=' then
 		   let pterms:Sequence(Synthesis!Term) = p.terms->asSequence()
 		   in
-		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
-				   and p.terms->at(2)->oclIsTypeOf(Synthesis!Predicate) then
-				   if p.terms->at(2).name = 'union' then
+		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassName)
+				   and p.terms->at(2)->oclIsTypeOf(Synthesis!SetPredicate) then
+				   if p.terms->at(2).symbol = 'union' then
 				      true
 				   else 
 				   	  false
@@ -78,8 +78,8 @@ helper context Synthesis!ClassDef def: isContainmentInvariant(): Boolean =
 	if self.hasInvariant() then 
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
-		if p.oclIsTypeOf(Synthesis!Predicate) then
-			if p.name = '<=' then 
+		if p.oclIsTypeOf(Synthesis!SetPredicate) then
+			if p.symbol = '<=' then 
 				true
 			else
 				false
@@ -95,8 +95,8 @@ helper context Synthesis!ClassDef def: isEquivalenceInvariant(): Boolean =
 	if self.hasInvariant() then 
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
-		if p.oclIsTypeOf(Synthesis!Predicate) then
-			if p.name = 'is_equal' then 
+		if p.oclIsTypeOf(Synthesis!BuiltInPredicate) then
+			if p.symbol = 'is_equal' then 
 				true
 			else
 				false
@@ -108,11 +108,11 @@ helper context Synthesis!ClassDef def: isEquivalenceInvariant(): Boolean =
 		false
 	endif;
 	
-helper context Synthesis!Term def: extractClassesRecursive() : Sequence(Synthesis!Class) = 
-	if self.oclIsTypeOf(Synthesis!ClassDef) then
-		Sequence{self}
+helper context Synthesis!Term def: extractClassesRecursive() : Sequence(Synthesis!ClassDef) = 
+	if self.oclIsTypeOf(Synthesis!ClassName) then
+		Sequence{self.classNameOf}
 	else
-		if self.oclIsTypeOf(Synthesis!Predicate) then
+		if self.oclIsKindOf(Synthesis!FunctionCall) then
 			self.terms->asSequence()->at(1)->extractClassesRecursive()->union(self.terms->asSequence()->at(2)->extractClassesRecursive())
 		else
 			Sequence{}

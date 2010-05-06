@@ -83,8 +83,12 @@
   <syn:ClassDef name="mutant" instanceType="/79"/>
   <syn:ADTDef name="Mutant" attributes="/80"/>
   <syn:AttributeDef name="mutantInvariant" attributeOf="/79" type="/81"/>
-  <syn:InvariantDef name="mutantInvariantBody" predicativeSpec="/82"/>
-  <syn-form:Predicate name="&lt;=" terms="/78 /83"/>
-  <syn-form:Predicate name="intersect" terms="/10 /84"/>
-  <syn-form:Predicate name="intersect" terms="/20 /22"/>
+  <syn:InvariantDef name="mutantInvariantBody" predicativeSpec="/86"/>
+  <syn-form:ClassName value="artist" nameOfClass="/10"/>
+  <syn-form:ClassName value="museum" nameOfClass="/22"/>
+  <syn-form:ClassName value="artefact" nameOfClass="/20"/>
+  <syn-form:ClassName value="mutant" nameOfClass="/78"/>
+  <syn-form:SetPredicate symbol="&lt;=" terms="/85 /87"/>
+  <syn-form:BuiltInFunction name="intersect" terms="/82 /88"/>
+  <syn-form:BuiltInFunction name="intersect" terms="/83 /84"/>
 </xmi:XMI>
