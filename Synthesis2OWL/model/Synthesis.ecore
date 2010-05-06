@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Synthes"
-    nsURI="http://Synthesis.ecore" nsPrefix="synthes">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Synthesis"
+    nsURI="http://Synthesis.ecore" nsPrefix="syn">
   <eClassifiers xsi:type="ecore:EClass" name="SchemaDef" eSuperTypes="#//ModuleDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modules" upperBound="-1"
         eType="#//ModuleDef" eOpposite="#//ModuleDef/schema"/>
@@ -169,13 +169,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="IntegerValueDef" eSuperTypes="#//ValueDef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
   </eClassifiers>
-  <eSubpackages name="Expressions" nsURI="http:///Synthesis.ecore/Expressions" nsPrefix="Expressions.syn">
+  <eSubpackages name="Expressions" nsURI="http://Synthesis.ecore/Expressions" nsPrefix="syn-expr">
     <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" eSuperTypes="#//Formulae/Term #//Expressions/Multiplier"/>
     <eClassifiers xsi:type="ecore:EClass" name="Multiplier"/>
     <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpression"/>
     <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpression"/>
   </eSubpackages>
-  <eSubpackages name="Programs" nsPrefix="">
+  <eSubpackages name="Programs" nsURI="http://Synthesis.ecore/Programs" nsPrefix="syn-prog">
     <eClassifiers xsi:type="ecore:EClass" name="Program"/>
     <eClassifiers xsi:type="ecore:EClass" name="RuleList" eSuperTypes="#//Programs/Program">
       <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="1"
@@ -208,7 +208,7 @@
           eType="#//Programs/Block" containment="true"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Formulae" nsURI="http:///Synthesis.ecore/Formulae" nsPrefix="syn-form">
+  <eSubpackages name="Formulae" nsURI="http://Synthesis.ecore/Formulae" nsPrefix="syn-form">
     <eClassifiers xsi:type="ecore:EClass" name="QuantifiedFormula" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
           eType="#//Formulae/Formula" containment="true"/>
@@ -250,7 +250,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Formulae/NonConstant"/>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionComprehension" eSuperTypes="#//Formulae/Constant">
       <eStructuralFeatures xsi:type="ecore:EReference" name="vars" lowerBound="1"
-          upperBound="-1" containment="true"/>
+          upperBound="-1" eType="#//Formulae/Variable" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
           eType="#//Formulae/Formula"/>
     </eClassifiers>
