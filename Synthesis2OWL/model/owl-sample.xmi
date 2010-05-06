@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="XML">
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Artist" />
+		</children>
+	</Element>
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Painter" />
+		</children>
+		<children xsi:type="Element" name="rdfs:subClassOf">
+			<children xsi:type="Attribute" name="rdf:resource" value="#" />
+		</children>
+	</Element>
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Painting" />
+		</children>
+		<children xsi:type="Element" name="rdfs:subClassOf">
+			<children xsi:type="Attribute" name="rdf:resource" value="#" />
+		</children>
+	</Element>
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Sculpture" />
+		</children>
+		<children xsi:type="Element" name="rdfs:subClassOf">
+			<children xsi:type="Attribute" name="rdf:resource" value="#" />
+		</children>
+	</Element>
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Sculptor" />
+		</children>
+		<children xsi:type="Element" name="rdfs:subClassOf">
+			<children xsi:type="Attribute" name="rdf:resource" value="#" />
+		</children>
+	</Element>
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Artefact" />
+		</children>
+	</Element>
+	<Element name="owl:Class">
+		<children xsi:type="Attribute" name="rdf:ID" value="" />
+		<children xsi:type="Element" name="rdfs:label">
+			<children xsi:type="Text" name="#text" value="Museum" />
+		</children>
+	</Element>
+	<Element name="">
+		<children xsi:type="Attribute" name="rdf:ID" value="MyMuseum" />
+	</Element>
+</xmi:XMI>

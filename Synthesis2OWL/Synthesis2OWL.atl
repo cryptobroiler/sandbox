@@ -1,0 +1,547 @@
+module Synthesis2OWL;
+create OUT:OWL from IN:Synthesis;
+
+-- =============================================================================
+-- HELPERS
+-- =============================================================================
+	
+helper def: primitiveTypeMap : Map(String, String) =
+	Map {
+		('string', 'http://www.w3.org/2001/XMLSchema#string'),
+		('uint', 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger'),	
+		('boolean', 'http://www.w3.org/2001/XMLSchema#boolean'),
+		('int', 'http://www.w3.org/2001/XMLSchema#integer' )
+	};
+helper def: addNamespace( s : String ) : String = 'http://synthesis.ipi.ac.ru/' + s ;
+helper context Synthesis!ClassDef def: hasInvariant() : Boolean =
+	not self.getInvariant().oclIsUndefined();
+helper context Synthesis!ClassDef def: getInvariant() : Synthesis!Invariant =
+	self.instanceType.attributes->asSequence()->select( t | t.type.oclIsTypeOf(Synthesis!InvariantDef))->
+	collect(t|t.type).first();
+helper context Synthesis!ClassDef def: isIntersectionClass() : Boolean =
+	if self.hasInvariant() then
+	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+	in
+		if p.oclIsTypeOf(Synthesis!Predicate) then
+		   if p.name = '<=' then
+		   let pterms:Sequence(Synthesis!Term) = p.terms->asSequence()
+		   in
+		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
+				   and p.terms->at(2)->oclIsTypeOf(Synthesis!Predicate) then
+				   if p.terms->at(2).name = 'intersect' then
+				      true
+				   else 
+				   	  false
+				   endif
+				 else
+				 	false
+				 endif
+		   else
+		      false
+		   endif
+		else
+			false
+		endif
+	 else
+	 	false
+	 endif;
+
+helper context Synthesis!ClassDef def: isUnionClass() : Boolean =
+	if self.hasInvariant() then
+	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+	in
+		if p.oclIsTypeOf(Synthesis!Predicate) then
+		   if p.name = '<=' then
+		   let pterms:Sequence(Synthesis!Term) = p.terms->asSequence()
+		   in
+		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
+				   and p.terms->at(2)->oclIsTypeOf(Synthesis!Predicate) then
+				   if p.terms->at(2).name = 'union' then
+				      true
+				   else 
+				   	  false
+				   endif
+				 else
+				 	false
+				 endif
+		   else
+		      false
+		   endif
+		else
+			false
+		endif
+	 else
+	 	false
+	 endif;
+
+helper context Synthesis!ClassDef def: isContainmentInvariant(): Boolean =
+	if self.hasInvariant() then 
+	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+	in
+		if p.oclIsTypeOf(Synthesis!Predicate) then
+			if p.name = '<=' then 
+				true
+			else
+				false
+			endif
+		else
+			false
+		endif
+	else
+		false
+	endif;
+
+helper context Synthesis!ClassDef def: isEquivalenceInvariant(): Boolean =
+	if self.hasInvariant() then 
+	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+	in
+		if p.oclIsTypeOf(Synthesis!Predicate) then
+			if p.name = 'is_equal' then 
+				true
+			else
+				false
+			endif
+		else
+			false
+		endif
+	else
+		false
+	endif;
+	
+helper context Synthesis!Term def: extractClassesRecursive() : Sequence(Synthesis!Class) = 
+	if self.oclIsTypeOf(Synthesis!ClassDef) then
+		Sequence{self}
+	else
+		if self.oclIsTypeOf(Synthesis!Predicate) then
+			self.terms->asSequence()->at(1)->extractClassesRecursive()->union(self.terms->asSequence()->at(2)->extractClassesRecursive())
+		else
+			Sequence{}
+		endif
+	endif;
+			
+		
+	
+helper context Synthesis!ClassDef def: getClassesFromPredicativeSpec() : Sequence( Synthesis!ClassDef )	=
+	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+	in
+		--p.terms->asSequence()->select(t | t.oclIsTypeOf(Synthesis!Predicate))->first().terms->asSequence()->select(t|t.oclIsTypeOf(Synthesis!ClassDef));
+		p.terms->asSequence()->select(t | t.oclIsTypeOf(Synthesis!Predicate))->first().extractClassesRecursive();
+	  
+helper def: getIntegerURI() : OclAny =
+	thisModule.resolveTemp( 
+		Synthesis!ScalarDef.allInstances()->any( e |
+			e.oclIsTypeOf(Synthesis!IntegerDef)  and e.name = 'int' ),
+			'u'
+	);
+
+helper context Synthesis!AssociationMetaclassDef def: getClassesWithProperty(): Sequence( Synthesis!ClassDef ) = 
+	Synthesis!ClassDef.allInstances()->
+	asSequence()->
+	select(t|t.oclIsTypeOf(Synthesis!ClassDef))->select(t | 
+		t.instanceType.attributes->asSequence()->
+		select(a|a.classes.includes(self))->notEmpty());
+-- =============================================================================
+-- RULES
+-- =============================================================================
+--rule SynthesisClass2OWLClass {
+--	from
+--		f : Synthesis!ClassDef (
+--			f.oclIsTypeOf(Synthesis!ClassDef)
+--			)
+--	to
+--		oc : OWL!OWLClass (
+--			subClassOf <- f.superclasses,
+--			uriRef <- u,
+--			label <- label
+--		),
+--		label : OWL!PlainLiteral ( lexicalForm <- f.name ),
+--		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+--		l : OWL!LocalName ( name <- f.name ),
+--		uri : OWL!UniformResourceIdentifier ( name <- f.name )
+--					
+--}
+--
+--
+--
+--
+--rule SynthesisModule2OWLOntology {
+--	from 
+--		m : Synthesis!ModuleDef (
+--			m.oclIsTypeOf(Synthesis!ModuleDef)
+--		)
+--	to
+--		o : OWL!OWLOntology (
+--			OWLImports <- m.imports->asSequence(),
+--			owlUniverse <- Synthesis!ClassDef.allInstances()->asSequence()->select(k | m.containedClasses->asSequence()->includes(k)),
+--			-- owlGraph <- Synthesis!ClassDef.allInstances()->asSequence(),
+--			uriRef <- u
+--		),
+--		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
+--		l : OWL!LocalName ( name <- m.name),
+--		uri : OWL!UniformResourceIdentifier (
+--			name <- thisModule.addNamespace(m.name)
+--		)
+--}
+--
+--rule SynthesisAssociation2OWLObjectProperty {
+--	from 
+--		sa : Synthesis!AssociationDef (
+--			sa.oclIsTypeOf(Synthesis!AssociationDef)
+--			)
+--	to
+--		op : OWL!OWLObjectProperty (
+--			domain <- sa.domain,
+--			range <- sa.range,
+--			OWLInverseOf <- sa.inverse,
+--			uriRef <- o_u),
+--		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
+--		o_l : OWL!LocalName ( name <- sa.inverse.name + '.' + sa.name ),
+--		o_uri : OWL!UniformResourceIdentifier ( name <- sa.inverse.name + '.' + sa.name )
+--	do {
+--		thisModule.addMinCardinality(sa,sa.domain);
+--		thisModule.addMaxCardinality(sa,sa.domain);
+--	}
+--		
+--			
+--}
+--
+--rule addMinCardinality( p : Synthesis!AccociationDef, class : Synthesis!ClassDef ) {
+--	to
+--		c : OWL!MinCardinalityRestriction (
+--			superClass <- class,
+--			OWLMinCardinality <- literal,
+--			OWLOnProperty <- p
+--		),
+--		literal : OWL!TypedLiteral (
+--			lexicalForm <- p.minCard.toString(),
+--			datatypeURI <- o_u		),
+--		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
+--		o_l : OWL!LocalName ( name <- 'Integer' ),
+--		o_uri : OWL!UniformResourceIdentifier ( name <- 'IntegerURI' )
+--		
+--}
+--
+--rule addMaxCardinality( p : Synthesis!AccociationDef, class : Synthesis!ClassDef ) {
+--	to
+--		c : OWL!MaxCardinalityRestriction (
+--			superClass <- class,
+--			OWLMaxCardinality <- literal,
+--			OWLOnProperty <- p
+--		),
+--		literal : OWL!TypedLiteral (
+--			lexicalForm <- p.maxCard.toString(),
+--			datatypeURI <-o_u		),
+--		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
+--		o_l : OWL!LocalName ( name <- 'Integer' ),
+--		o_uri : OWL!UniformResourceIdentifier ( name <- 'IntegerURI' )
+--}
+--
+
+
+rule ScalarType2RDFSDataType {
+	from
+		p : Synthesis!ScalarDef
+	to
+		d : OWL!RDFSDataType (
+			uriRef <- u
+		),
+		u : OWL!URIReference (
+			uri <- uri
+		),
+		uri : OWL!UniformResourceIdentifier ( 
+			name <- thisModule.primitiveTypeMap.get(p.name) 
+		)
+}
+
+
+ rule OrdinaryClass2OWLClass {
+	from
+		c : Synthesis!ClassDef (
+				if c.oclIsTypeOf(Synthesis!ClassDef) then
+					if not c.instanceType.oclIsUndefined() 
+				 then if c.hasInvariant() then
+				  false
+				  else true
+				  endif
+				  else
+				  	false
+					endif
+					else false
+					endif) 
+	to
+		oc : OWL!OWLClass (
+			subClassOf <- c.superclasses,
+			uriRef <- uri,
+			label <- label
+		),
+		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
+		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName ( name <- c.instanceType.name ),
+		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
+}
+ 
+ rule IntersectionClass2OWLIntersection {
+ 	from 
+		c : Synthesis!ClassDef (
+			if c.oclIsTypeOf(Synthesis!ClassDef) then
+				if not c.instanceType.oclIsUndefined() 
+				 then if c.isIntersectionClass() then
+				  true
+				  else false
+				  endif
+				  else
+				  	false
+					endif
+					else false
+					endif)
+	to
+		oc: OWL!IntersectionClass (
+			subClassOf <- c.superclasses,
+			OWLIntersectionOf <- c.getClassesFromPredicativeSpec(),
+			uriRef <- uri,
+			label <- label),
+		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
+		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName ( name <- c.instanceType.name ),
+		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )
+ }
+ 
+  rule UnionClass2OWLUnion {
+ 	from 
+		c : Synthesis!ClassDef (
+			if c.oclIsTypeOf(Synthesis!ClassDef) then
+				if not c.instanceType.oclIsUndefined() 
+				 then if c.isUnionClass() then
+				  true
+				  else false
+				  endif
+				  else
+				  	false 
+					endif
+					else false
+					endif)
+	to
+		oc: OWL!IntersectionClass (
+			subClassOf <- c.superclasses,
+			OWLUnionOf <- c.getClassesFromPredicativeSpec(),
+			uriRef <- uri,
+			label <- label),
+		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
+		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName ( name <- c.instanceType.name ),
+		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )
+ }
+ 
+ 
+ 
+
+rule AssociationMetaclass2SOWLObjectProperty {
+	from 
+		am : Synthesis!AssociationMetaclassDef
+	to
+		op : OWL!OWLObjectProperty (
+			domain <- am.domain,
+			range <- am.range,
+			OWLInverseOf <- am.inverse,
+			subPropertyOf <- am.superclasses,
+			uriRef <- o_u),
+		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
+		o_l : OWL!LocalName ( name <- am.inverse.name + '.' + am.name ),
+		o_uri : OWL!UniformResourceIdentifier ( name <- am.inverse.name + '.' + am.name )
+	do {
+		if (( am.minCard = 1) and (am.maxCard = 1))
+				thisModule.addFunctionalProperty(am);
+		if(am.minCard = am.maxCard) {
+			thisModule.addCardinalityRestriction(am);
+		} else {
+			if (( am.maxCard = 0-1 ) and ( am.minCard >= 0 )) {-- [*]
+					thisModule.addMinCardinalityRestriction(am);
+			} else { -- [m-n]
+					thisModule.addMinCardinalityRestriction(am);
+					thisModule.addMaxCardinalityRestriction(am);
+			}
+		}
+	}
+		
+
+}
+
+rule addFunctionalProperty(am : Synthesis!AssociationMetaclassDef) {
+	to
+		 o : OWL!FunctionalProperty (
+		 	isDefinedBy <- am)
+}
+-- =============================================================================
+-- OWL Restrictions
+-- =============================================================================
+rule addCardinalityRestrictionToClass ( c: Synthesis!ClassDef, 
+										p: Synthesis!AssociationMetaclassDef,
+										card: Synthesis!IntegerValueDef) {
+	to
+		r: OWL!CardinalityRestriction(
+			superClass <- c,
+			OWLCardinality <- literal,
+			OWLOnProperty <- p
+		),
+		literal : OWL!TypedLiteral (
+			lexicalForm <- card.toString(),
+			datatypeURI <- thisModule.getIntegerURI()
+		)
+}
+
+rule addMinCardinalityRestrictionToClass ( c: Synthesis!ClassDef, 
+										p: Synthesis!AssociationMetaclassDef,
+										minCard: Synthesis!IntegerValueDef) {
+	to
+		r: OWL!MaxCardinalityRestriction(
+			superClass <- c,
+			OWLCardinality <- literal,
+			OWLOnProperty <- p
+		),
+		literal : OWL!TypedLiteral (
+			lexicalForm <- minCard.toString(),
+			datatypeURI <- thisModule.getIntegerURI()
+		)
+}
+
+rule addMaxCardinalityRestrictionToClass ( c: Synthesis!ClassDef, 
+										p: Synthesis!AssociationMetaclassDef,
+										maxCard: Synthesis!IntegerValueDef) {
+	to
+		r: OWL!MaxCardinalityRestriction(
+			superClass <- c,
+			OWLCardinality <- literal,
+			OWLOnProperty <- p
+		),
+		literal : OWL!TypedLiteral (
+			lexicalForm <- maxCard.toString(),
+			datatypeURI <- thisModule.getIntegerURI()
+		)
+}
+
+rule addHasValueRestrictionToClass ( c: Synthesis!ClassDef,
+									 p: Synthesis!AssociationMetaclassDef,
+									 value: Synthesis!ValueDef) {
+	to
+		r: OWL!HasValueRestriction(
+			superclass <- c,
+			OWLHasLiteralValue <- literal,
+			OWLOnProperty <- p)
+			,
+			literal : OWL!RDFSLiteral (
+				lexicalForm <- value.toString())
+}
+
+rule addSomeValuesFromRestrictionToClass (c: Synthesis!ClassDef,
+										 p: Synthesis!AssociationMetaclassDef,
+										 fromClass: Synthesis!ClassDef) {
+	to
+		r: OWL!SomeValuesFromRestriction(
+			superclass <- c,
+			OWLSomeVluesFromClass <- fromClass,
+			OWLOnProperty <- p)
+}
+
+rule addAllValuesFromRestrictionToClass (c: Synthesis!ClassDef,
+										 p: Synthesis!AssociationMetaclassDef,
+										 fromClass: Synthesis!ClassDef ) {
+	to
+		r: OWL!AllValuesFromRestriction(
+			superclass <- c,
+			OWLAllValueFromClass <- fromClass)
+}
+
+rule addCardinalityRestriction( p : Synthesis!AssociationMetaclassDef ) {
+	to
+		c : OWL!CardinalityRestriction (
+			superClass <- p.getClassesWithProperty(),
+			OWLCardinality <- literal,
+			OWLOnProperty <- p
+		),
+		literal : OWL!TypedLiteral (
+			lexicalForm <- p.maxCard.toString(),
+			datatypeURI <- thisModule.getIntegerURI()
+		)
+}
+
+rule addMaxCardinalityRestriction( p : Synthesis!AssociationMetaclassDef ) {
+	to
+		c : OWL!MaxCardinalityRestriction (
+			superClass <-p.getClassesWithProperty(),
+			OWLMaxCardinality <- literal,
+			OWLOnProperty <- p
+		),
+		literal : OWL!TypedLiteral (
+			lexicalForm <- p.maxCard.toString(),
+			datatypeURI <- thisModule.getIntegerURI()
+		)
+}
+
+rule addMinCardinalityRestriction( p : Synthesis!AssociationMetaclassDef ) {
+	to
+		c : OWL!MinCardinalityRestriction (
+			superClass <- p.getClassesWithProperty(),
+			OWLMinCardinality <- literal,
+			OWLOnProperty <- p
+		),
+		literal : OWL!TypedLiteral (
+			lexicalForm <- p.minCard.toString(),
+			datatypeURI <- thisModule.getIntegerURI()
+		)
+}
+rule addFunctionalProperty( am : Synthesis!AssociationMetaclassDef ) {
+	to
+		o : OWL!FunctionalProperty (
+				isDefinedBy <- am
+		)
+}
+
+
+
+
+-- =============================================================================
+-- BOOLEAN OPERATIONS
+-- =============================================================================
+
+rule addIntersectionToClass ( classesInIntersection : Sequence(Synthesis!ClassDef),
+							  c : Synthesis!ClassDef) {
+	to
+		intersection : OWL!IntersectionClass (
+			superClass <- c,
+			OWLIntersectionOf <- classesInIntersection)
+}
+rule addUnionToClass ( classesInUnion : Sequence(Synthesis!ClassDef),
+							  c : Synthesis!ClassDef) {
+	to
+		union : OWL!UnionClass (
+			superClass <- c,
+			OWLUnionOf <- classesInUnion)
+}
+rule addComplementToClass ( complementClasses : Sequence(Synthesis!ClassDef),
+							c: Synthesis!ClassDef) {
+	to
+		complement: OWL!ComplementClass (
+			superClass <- c,
+			OWLComplementOf <- complementClasses)
+}
+
+
+-- TODO: Property restrictions
+-- =============================================================================
+-- INDIVIDUALS
+-- =============================================================================
+rule Frame2Individual {
+	from 
+		i : Synthesis!FrameDef (
+			i.oclIsTypeOf(Synthesis!FrameDef) and
+			i.classes->asSequence()->notEmpty() and 
+			Synthesis!ClassDef.allInstances()->asSequence()->includesAll(i.classes->asSequence())
+			)
+	to
+		owlIndividual: OWL!Individual(
+			uriRef <- u,
+			type <- i.classes->asSequence()),
+		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri),
+		l : OWL!LocalName (name <- i.name),
+		uri: OWL!UniformResourceIdentifier (name <- i.name)
+}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="RDFS" xmlns:_1="OWL">
+  <RDFSDataType>
+    <uriRef uri="/1"/>
+  </RDFSDataType>
+  <UniformResourceIdentifier name="http://www.w3.org/2001/XMLSchema#nonNegativeInteger" uriRef="/0/@uriRef.0"/>
+  <RDFSDataType>
+    <uriRef uri="/3" literal="/63 /65 /67 /69 /71 /73 /75 /77 /79"/>
+  </RDFSDataType>
+  <UniformResourceIdentifier name="http://www.w3.org/2001/XMLSchema#integer" uriRef="/2/@uriRef.0"/>
+  <RDFSDataType>
+    <uriRef uri="/5"/>
+  </RDFSDataType>
+  <UniformResourceIdentifier name="http://www.w3.org/2001/XMLSchema#string" uriRef="/4/@uriRef.0"/>
+  <RDFSDataType>
+    <uriRef uri="/7"/>
+  </RDFSDataType>
+  <UniformResourceIdentifier name="http://www.w3.org/2001/XMLSchema#boolean" uriRef="/6/@uriRef.0"/>
+  <_1:OWLClass subClassOf="/70" superClass="/11 /20" propertyForDomain="/44 /47" propertyForRange="/35" intersectionClass="/29">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Artist" uriRef="/9"/>
+    <label lexicalForm="Artist"/>
+  </_1:OWLClass>
+  <URIReference uri="/8/@uriRef.0" fragmentIdentifier="/10"/>
+  <LocalName name="Artist" uriRef="/9"/>
+  <_1:OWLClass subClassOf="/8 /78" propertyForDomain="/56" propertyForRange="/32">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Painter" uriRef="/12"/>
+    <label lexicalForm="Painter"/>
+  </_1:OWLClass>
+  <URIReference uri="/11/@uriRef.0" fragmentIdentifier="/13"/>
+  <LocalName name="Painter" uriRef="/12"/>
+  <_1:OWLClass subClassOf="/23 /62" propertyForDomain="/32" propertyForRange="/56">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Painting" uriRef="/15"/>
+    <label lexicalForm="Painting"/>
+  </_1:OWLClass>
+  <URIReference uri="/14/@uriRef.0" fragmentIdentifier="/16"/>
+  <LocalName name="Painting" uriRef="/15"/>
+  <_1:OWLClass subClassOf="/23 /66" propertyForDomain="/38" propertyForRange="/50">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Sculpture" uriRef="/18"/>
+    <label lexicalForm="Sculpture"/>
+  </_1:OWLClass>
+  <URIReference uri="/17/@uriRef.0" fragmentIdentifier="/19"/>
+  <LocalName name="Sculpture" uriRef="/18"/>
+  <_1:OWLClass subClassOf="/8 /74" propertyForDomain="/50" propertyForRange="/38">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Sculptor" uriRef="/21"/>
+    <label lexicalForm="Sculptor"/>
+  </_1:OWLClass>
+  <URIReference uri="/20/@uriRef.0" fragmentIdentifier="/22"/>
+  <LocalName name="Sculptor" uriRef="/21"/>
+  <_1:OWLClass subClassOf="/64 /76" superClass="/14 /17" propertyForDomain="/35 /53" propertyForRange="/41 /44 /47" intersectionClass="/29">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Artefact" uriRef="/24"/>
+    <label lexicalForm="Artefact"/>
+  </_1:OWLClass>
+  <URIReference uri="/23/@uriRef.0" fragmentIdentifier="/25"/>
+  <LocalName name="Artefact" uriRef="/24"/>
+  <_1:OWLClass subClassOf="/68" typedResource="/59" propertyForDomain="/41" propertyForRange="/53" intersectionClass="/29">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Museum" uriRef="/27"/>
+    <label lexicalForm="Museum"/>
+  </_1:OWLClass>
+  <URIReference uri="/26/@uriRef.0" fragmentIdentifier="/28"/>
+  <LocalName name="Museum" uriRef="/27"/>
+  <_1:IntersectionClass OWLIntersectionOf="/8 /23 /26">
+    <uriRef xsi:type="UniformResourceIdentifier" name="Mutant" uriRef="/30"/>
+    <label lexicalForm="Mutant"/>
+  </_1:IntersectionClass>
+  <URIReference uri="/29/@uriRef.0" fragmentIdentifier="/31"/>
+  <LocalName name="Mutant" uriRef="/30"/>
+  <_1:OWLObjectProperty subPropertyOf="/35" domain="/14" range="/11" propertyRestriction="/62" OWLInverseOf="/56" inverseProperty="/56">
+    <uriRef uri="/34" fragmentIdentifier="/33"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Painter.paintsMetaclass.Painting.hasPainterMetaclass" uriRef="/32/@uriRef.0"/>
+  <UniformResourceIdentifier name="Painter.paintsMetaclass.Painting.hasPainterMetaclass" uriRef="/32/@uriRef.0"/>
+  <_1:OWLObjectProperty superProperty="/32 /38" domain="/23" range="/8" propertyRestriction="/64" OWLInverseOf="/44" inverseProperty="/44 /47">
+    <uriRef uri="/37" fragmentIdentifier="/36"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Artist.createsMetaclass.Artefact.hasArtistMetaclass" uriRef="/35/@uriRef.0"/>
+  <UniformResourceIdentifier name="Artist.createsMetaclass.Artefact.hasArtistMetaclass" uriRef="/35/@uriRef.0"/>
+  <_1:OWLObjectProperty subPropertyOf="/35" domain="/17" range="/20" propertyRestriction="/66" OWLInverseOf="/50" inverseProperty="/50">
+    <uriRef uri="/40" fragmentIdentifier="/39"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Sculptor.sculptsMetaclass.Sculpture.hasSculptorMetaclass" uriRef="/38/@uriRef.0"/>
+  <UniformResourceIdentifier name="Sculptor.sculptsMetaclass.Sculpture.hasSculptorMetaclass" uriRef="/38/@uriRef.0"/>
+  <_1:OWLObjectProperty domain="/26" range="/23" propertyRestriction="/68" OWLInverseOf="/53" inverseProperty="/53">
+    <uriRef uri="/43" fragmentIdentifier="/42"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Artefact.exhibitedMetaclass.Museum.exhibitesMetaclass" uriRef="/41/@uriRef.0"/>
+  <UniformResourceIdentifier name="Artefact.exhibitedMetaclass.Museum.exhibitesMetaclass" uriRef="/41/@uriRef.0"/>
+  <_1:OWLObjectProperty superProperty="/50 /56" domain="/8" range="/23" propertyRestriction="/70" OWLInverseOf="/35" inverseProperty="/35">
+    <uriRef uri="/46" fragmentIdentifier="/45"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Artefact.hasArtistMetaclass.Artist.createsMetaclass" uriRef="/44/@uriRef.0"/>
+  <UniformResourceIdentifier name="Artefact.hasArtistMetaclass.Artist.createsMetaclass" uriRef="/44/@uriRef.0"/>
+  <_1:OWLObjectProperty domain="/8" range="/23" propertyRestriction="/72" OWLInverseOf="/35">
+    <uriRef uri="/49" fragmentIdentifier="/48"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Artefact.hasArtistMetaclass.Artist.createsMetaclass" uriRef="/47/@uriRef.0"/>
+  <UniformResourceIdentifier name="Artefact.hasArtistMetaclass.Artist.createsMetaclass" uriRef="/47/@uriRef.0"/>
+  <_1:OWLObjectProperty subPropertyOf="/44" domain="/20" range="/17" propertyRestriction="/74" OWLInverseOf="/38" inverseProperty="/38">
+    <uriRef uri="/52" fragmentIdentifier="/51"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Sculpture.hasSculptorMetaclass.Sculptor.sculptsMetaclass" uriRef="/50/@uriRef.0"/>
+  <UniformResourceIdentifier name="Sculpture.hasSculptorMetaclass.Sculptor.sculptsMetaclass" uriRef="/50/@uriRef.0"/>
+  <_1:OWLObjectProperty domain="/23" range="/26" propertyRestriction="/76" OWLInverseOf="/41" inverseProperty="/41">
+    <uriRef uri="/55" fragmentIdentifier="/54"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Museum.exhibitesMetaclass.Artefact.exhibitedMetaclass" uriRef="/53/@uriRef.0"/>
+  <UniformResourceIdentifier name="Museum.exhibitesMetaclass.Artefact.exhibitedMetaclass" uriRef="/53/@uriRef.0"/>
+  <_1:OWLObjectProperty subPropertyOf="/44" domain="/11" range="/14" propertyRestriction="/78" OWLInverseOf="/32" inverseProperty="/32">
+    <uriRef uri="/58" fragmentIdentifier="/57"/>
+  </_1:OWLObjectProperty>
+  <LocalName name="Painting.hasPainterMetaclass.Painter.paintsMetaclass" uriRef="/56/@uriRef.0"/>
+  <UniformResourceIdentifier name="Painting.hasPainterMetaclass.Painter.paintsMetaclass" uriRef="/56/@uriRef.0"/>
+  <_1:Individual type="/26">
+    <uriRef uri="/61" fragmentIdentifier="/60"/>
+  </_1:Individual>
+  <LocalName name="MyMuseum" uriRef="/59/@uriRef.0"/>
+  <UniformResourceIdentifier name="MyMuseum" uriRef="/59/@uriRef.0"/>
+  <_1:MinCardinalityRestriction superClass="/14" OWLOnProperty="/32" OWLMinCardinality="/63"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/62"/>
+  <_1:MinCardinalityRestriction superClass="/23" OWLOnProperty="/35" OWLMinCardinality="/65"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/64"/>
+  <_1:MinCardinalityRestriction superClass="/17" OWLOnProperty="/38" OWLMinCardinality="/67"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/66"/>
+  <_1:MinCardinalityRestriction superClass="/26" OWLOnProperty="/41" OWLMinCardinality="/69"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/68"/>
+  <_1:MinCardinalityRestriction superClass="/8" OWLOnProperty="/44" OWLMinCardinality="/71"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/70"/>
+  <_1:MinCardinalityRestriction OWLOnProperty="/47" OWLMinCardinality="/73"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/72"/>
+  <_1:MinCardinalityRestriction superClass="/20" OWLOnProperty="/50" OWLMinCardinality="/75"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/74"/>
+  <_1:MinCardinalityRestriction superClass="/23" OWLOnProperty="/53" OWLMinCardinality="/77"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/76"/>
+  <_1:MinCardinalityRestriction superClass="/11" OWLOnProperty="/56" OWLMinCardinality="/79"/>
+  <TypedLiteral lexicalForm="0" datatypeURI="/2/@uriRef.0" minCardinalityRestriction="/78"/>
+</xmi:XMI>

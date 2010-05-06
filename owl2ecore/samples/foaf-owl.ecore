@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ASCII"?>
+<owl:OWLGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:owl="http://l3i.sido.emf4sw/2008/OWL">
+  <ontologies URI="http://xmlns.com/foaf/0.1/" localName="">
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.16 //@ontologies.0/@universe.5 //@ontologies.0/@universe.1" localName="Document" URI="http://xmlns.com/wordnet/1.6/Document"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.0" localName="Image" URI="http://xmlns.com/foaf/0.1/Image" domainProperty="//@ontologies.0/@universe.49 //@ontologies.0/@universe.61" rangeProperty="//@ontologies.0/@universe.49 //@ontologies.0/@universe.66 //@ontologies.0/@universe.73"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.11 //@ontologies.0/@universe.19 //@ontologies.0/@universe.4" OWLdisjointWith="//@ontologies.0/@universe.20 //@ontologies.0/@universe.5" disjointClass="//@ontologies.0/@universe.20 //@ontologies.0/@universe.5" localName="Organization" URI="http://xmlns.com/foaf/0.1/Organization"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.20" localName="Person" URI="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.11 //@ontologies.0/@universe.20 //@ontologies.0/@universe.2 //@ontologies.0/@universe.9" localName="Agent-3" URI="http://xmlns.com/wordnet/1.6/Agent-3"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.16" subClassOf="//@ontologies.0/@universe.0" OWLdisjointWith="//@ontologies.0/@universe.11 //@ontologies.0/@universe.15 //@ontologies.0/@universe.20 //@ontologies.0/@universe.2" disjointClass="//@ontologies.0/@universe.20 //@ontologies.0/@universe.2 //@ontologies.0/@universe.15" localName="Document" URI="http://xmlns.com/foaf/0.1/Document" domainProperty="//@ontologies.0/@universe.35 //@ontologies.0/@universe.48 //@ontologies.0/@universe.59" rangeProperty="//@ontologies.0/@universe.44 //@ontologies.0/@universe.45 //@ontologies.0/@universe.46 //@ontologies.0/@universe.54 //@ontologies.0/@universe.63 //@ontologies.0/@universe.65 //@ontologies.0/@universe.67 //@ontologies.0/@universe.69 //@ontologies.0/@universe.70 //@ontologies.0/@universe.71 //@ontologies.0/@universe.72"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.20" localName="Person" URI="http://xmlns.com/wordnet/1.6/Person"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.12" localName="OnlineEcommerceAccount" URI="http://xmlns.com/foaf/0.1/OnlineEcommerceAccount"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.12" localName="OnlineGamingAccount" URI="http://xmlns.com/foaf/0.1/OnlineGamingAccount"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.11 //@ontologies.0/@universe.4" localName="Group" URI="http://xmlns.com/foaf/0.1/Group" domainProperty="//@ontologies.0/@universe.43"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.20" localName="SpatialThing" URI="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" domainProperty="//@ontologies.0/@universe.64" rangeProperty="//@ontologies.0/@universe.64"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.20 //@ontologies.0/@universe.2 //@ontologies.0/@universe.9" subClassOf="//@ontologies.0/@universe.4" disjointClass="//@ontologies.0/@universe.5" localName="Agent" URI="http://xmlns.com/foaf/0.1/Agent" domainProperty="//@ontologies.0/@universe.22 //@ontologies.0/@universe.23 //@ontologies.0/@universe.29 //@ontologies.0/@universe.33 //@ontologies.0/@universe.34 //@ontologies.0/@universe.36 //@ontologies.0/@universe.37 //@ontologies.0/@universe.38 //@ontologies.0/@universe.44 //@ontologies.0/@universe.45 //@ontologies.0/@universe.51 //@ontologies.0/@universe.52 //@ontologies.0/@universe.56 //@ontologies.0/@universe.70" rangeProperty="//@ontologies.0/@universe.43 //@ontologies.0/@universe.50"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.8 //@ontologies.0/@universe.7 //@ontologies.0/@universe.13" localName="OnlineAccount" URI="http://xmlns.com/foaf/0.1/OnlineAccount" domainProperty="//@ontologies.0/@universe.41 //@ontologies.0/@universe.71" rangeProperty="//@ontologies.0/@universe.51"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.12" localName="OnlineChatAccount" URI="http://xmlns.com/foaf/0.1/OnlineChatAccount"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.15" localName="Project" URI="http://xmlns.com/wordnet/1.6/Project"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.14" OWLdisjointWith="//@ontologies.0/@universe.20 //@ontologies.0/@universe.5" disjointClass="//@ontologies.0/@universe.20 //@ontologies.0/@universe.5" localName="Project" URI="http://xmlns.com/foaf/0.1/Project"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.0 //@ontologies.0/@universe.5" localName="PersonalProfileDocument" URI="http://xmlns.com/foaf/0.1/PersonalProfileDocument"/>
+    <universe xsi:type="owl:OWLClass" localName="Class" URI="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.20" localName="Agent" URI="http://xmlns.com/wordnet/1.6/Agent"/>
+    <universe xsi:type="owl:OWLClass" subClass="//@ontologies.0/@universe.2" localName="Organization" URI="http://xmlns.com/wordnet/1.6/Organization"/>
+    <universe xsi:type="owl:OWLClass" subClassOf="//@ontologies.0/@universe.11 //@ontologies.0/@universe.18 //@ontologies.0/@universe.4 //@ontologies.0/@universe.10 //@ontologies.0/@universe.3 //@ontologies.0/@universe.6" OWLdisjointWith="//@ontologies.0/@universe.15 //@ontologies.0/@universe.5 //@ontologies.0/@universe.2" disjointClass="//@ontologies.0/@universe.5 //@ontologies.0/@universe.2 //@ontologies.0/@universe.15" localName="Person" URI="http://xmlns.com/foaf/0.1/Person" domainProperty="//@ontologies.0/@universe.25 //@ontologies.0/@universe.26 //@ontologies.0/@universe.27 //@ontologies.0/@universe.31 //@ontologies.0/@universe.40 //@ontologies.0/@universe.42 //@ontologies.0/@universe.55 //@ontologies.0/@universe.60 //@ontologies.0/@universe.62 //@ontologies.0/@universe.63 //@ontologies.0/@universe.65 //@ontologies.0/@universe.67 //@ontologies.0/@universe.68 //@ontologies.0/@universe.69 //@ontologies.0/@universe.72 //@ontologies.0/@universe.73" rangeProperty="//@ontologies.0/@universe.62"/>
+    <universe xsi:type="owl:DataType" URI="http://www.w3.org/2000/01/rdf-schema#Literal" rangeProperty="//@ontologies.0/@universe.22 //@ontologies.0/@universe.23 //@ontologies.0/@universe.24 //@ontologies.0/@universe.25 //@ontologies.0/@universe.26 //@ontologies.0/@universe.27 //@ontologies.0/@universe.29 //@ontologies.0/@universe.31 //@ontologies.0/@universe.33 //@ontologies.0/@universe.34 //@ontologies.0/@universe.36 //@ontologies.0/@universe.37 //@ontologies.0/@universe.38 //@ontologies.0/@universe.39 //@ontologies.0/@universe.40 //@ontologies.0/@universe.41"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="icqChatID" URI="http://xmlns.com/foaf/0.1/icqChatID" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="mbox_sha1sum" URI="http://xmlns.com/foaf/0.1/mbox_sha1sum" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="dnaChecksum" URI="http://xmlns.com/foaf/0.1/dnaChecksum" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="firstName" URI="http://xmlns.com/foaf/0.1/firstName" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="surname" URI="http://xmlns.com/foaf/0.1/surname" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="family_name" URI="http://xmlns.com/foaf/0.1/family_name" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="givenname" URI="http://xmlns.com/foaf/0.1/givenname"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="yahooChatID" URI="http://xmlns.com/foaf/0.1/yahooChatID" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="nick" URI="http://xmlns.com/foaf/0.1/nick"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="plan" URI="http://xmlns.com/foaf/0.1/plan" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="title" URI="http://xmlns.com/foaf/0.1/title"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="aimChatID" URI="http://xmlns.com/foaf/0.1/aimChatID" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="birthday" URI="http://xmlns.com/foaf/0.1/birthday" isFunctional="true" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="sha1" URI="http://xmlns.com/foaf/0.1/sha1" domain="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="jabberID" URI="http://xmlns.com/foaf/0.1/jabberID" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="gender" URI="http://xmlns.com/foaf/0.1/gender" isFunctional="true" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="msnChatID" URI="http://xmlns.com/foaf/0.1/msnChatID" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="name" URI="http://xmlns.com/foaf/0.1/name" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="geekcode" URI="http://xmlns.com/foaf/0.1/geekcode" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:DatatypeProperty" localName="accountName" URI="http://xmlns.com/foaf/0.1/accountName" domain="//@ontologies.0/@universe.12" range="//@ontologies.0/@universe.21"/>
+    <universe xsi:type="owl:ObjectProperty" localName="pastProject" URI="http://xmlns.com/foaf/0.1/pastProject" domain="//@ontologies.0/@universe.20"/>
+    <universe xsi:type="owl:ObjectProperty" localName="member" URI="http://xmlns.com/foaf/0.1/member" domain="//@ontologies.0/@universe.9" range="//@ontologies.0/@universe.11"/>
+    <universe xsi:type="owl:ObjectProperty" localName="weblog" URI="http://xmlns.com/foaf/0.1/weblog" domain="//@ontologies.0/@universe.11" isInverseFunctional="true" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="tipjar" URI="http://xmlns.com/foaf/0.1/tipjar" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="page" URI="http://xmlns.com/foaf/0.1/page" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="logo" URI="http://xmlns.com/foaf/0.1/logo"/>
+    <universe xsi:type="owl:ObjectProperty" localName="topic" URI="http://xmlns.com/foaf/0.1/topic" domain="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="thumbnail" URI="http://xmlns.com/foaf/0.1/thumbnail" domain="//@ontologies.0/@universe.1" range="//@ontologies.0/@universe.1"/>
+    <universe xsi:type="owl:ObjectProperty" localName="maker" URI="http://xmlns.com/foaf/0.1/maker" range="//@ontologies.0/@universe.11"/>
+    <universe xsi:type="owl:ObjectProperty" localName="holdsAccount" URI="http://xmlns.com/foaf/0.1/holdsAccount" domain="//@ontologies.0/@universe.11" range="//@ontologies.0/@universe.12"/>
+    <universe xsi:type="owl:ObjectProperty" localName="mbox" URI="http://xmlns.com/foaf/0.1/mbox" domain="//@ontologies.0/@universe.11" isInverseFunctional="true"/>
+    <universe xsi:type="owl:ObjectProperty" localName="fundedBy" URI="http://xmlns.com/foaf/0.1/fundedBy"/>
+    <universe xsi:type="owl:ObjectProperty" localName="homepage" URI="http://xmlns.com/foaf/0.1/homepage" isInverseFunctional="true" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="currentProject" URI="http://xmlns.com/foaf/0.1/currentProject" domain="//@ontologies.0/@universe.20"/>
+    <universe xsi:type="owl:ObjectProperty" localName="made" URI="http://xmlns.com/foaf/0.1/made" domain="//@ontologies.0/@universe.11"/>
+    <universe xsi:type="owl:ObjectProperty" localName="theme" URI="http://xmlns.com/foaf/0.1/theme"/>
+    <universe xsi:type="owl:ObjectProperty" localName="phone" URI="http://xmlns.com/foaf/0.1/phone"/>
+    <universe xsi:type="owl:ObjectProperty" localName="primaryTopic" URI="http://xmlns.com/foaf/0.1/primaryTopic" isFunctional="true" domain="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="topic_interest" URI="http://xmlns.com/foaf/0.1/topic_interest" domain="//@ontologies.0/@universe.20"/>
+    <universe xsi:type="owl:ObjectProperty" localName="depicts" URI="http://xmlns.com/foaf/0.1/depicts" domain="//@ontologies.0/@universe.1"/>
+    <universe xsi:type="owl:ObjectProperty" localName="knows" URI="http://xmlns.com/foaf/0.1/knows" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.20"/>
+    <universe xsi:type="owl:ObjectProperty" localName="workInfoHomepage" URI="http://xmlns.com/foaf/0.1/workInfoHomepage" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="based_near" URI="http://xmlns.com/foaf/0.1/based_near" domain="//@ontologies.0/@universe.10" range="//@ontologies.0/@universe.10"/>
+    <universe xsi:type="owl:ObjectProperty" localName="interest" URI="http://xmlns.com/foaf/0.1/interest" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="depiction" URI="http://xmlns.com/foaf/0.1/depiction" range="//@ontologies.0/@universe.1"/>
+    <universe xsi:type="owl:ObjectProperty" localName="schoolHomepage" URI="http://xmlns.com/foaf/0.1/schoolHomepage" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="myersBriggs" URI="http://xmlns.com/foaf/0.1/myersBriggs" domain="//@ontologies.0/@universe.20"/>
+    <universe xsi:type="owl:ObjectProperty" localName="workplaceHomepage" URI="http://xmlns.com/foaf/0.1/workplaceHomepage" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="openid" URI="http://xmlns.com/foaf/0.1/openid" domain="//@ontologies.0/@universe.11" isInverseFunctional="true" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="accountServiceHomepage" URI="http://xmlns.com/foaf/0.1/accountServiceHomepage" domain="//@ontologies.0/@universe.12" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="publications" URI="http://xmlns.com/foaf/0.1/publications" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.5"/>
+    <universe xsi:type="owl:ObjectProperty" localName="img" URI="http://xmlns.com/foaf/0.1/img" domain="//@ontologies.0/@universe.20" range="//@ontologies.0/@universe.1"/>
+  </ontologies>
+  <namespaces prefix="rdf" URI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+  <namespaces prefix="wot" URI="http://xmlns.com/wot/0.1/"/>
+  <namespaces prefix="vs" URI="http://www.w3.org/2003/06/sw-vocab-status/ns#"/>
+  <namespaces prefix="owl" URI="http://www.w3.org/2002/07/owl#"/>
+  <namespaces prefix="dc" URI="http://purl.org/dc/elements/1.1/"/>
+  <namespaces prefix="rdfs" URI="http://www.w3.org/2000/01/rdf-schema#"/>
+</owl:OWLGraph>

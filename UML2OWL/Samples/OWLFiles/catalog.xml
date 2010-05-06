@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog id="file:/Users/deus/Development/eclipse-mdl/UML2OWL/Samples/OWLFiles/" prefer="public" xml:base="file:/Users/deus/Development/eclipse-mdl/UML2OWL/Samples/OWLFiles/" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri name="http://example.org/Museum" uri="Museum.owl"/>
+</catalog>

@@ -1,0 +1,263 @@
+-- @atlcompiler atl2006
+
+module owl2ecore;
+create OUT:ecore from IN:owl;
+
+-- @author 	Guillaume Hillairet (g.hillairet@gmail.com)
+-- @date 	10/2008
+
+helper def: datatypes: Map(String, String) =
+	Map {
+		('http://www.w3.org/2001/XMLSchema#string', 'EString'),
+		('http://www.w3.org/2001/XMLSchema#int', 'EInteger'),
+		('http://www.w3.org/2001/XMLSchema#boolean', 'EBoolean'),
+		('http://www.w3.org/2001/XMLSchema#integer','UnlimitedNatural'),
+		('http://www.w3.org/2001/XMLSchema#byte', 'Byte'),
+		('http://www.w3.org/2001/XMLSchema#decimal', 'Currency'),
+		('http://www.w3.org/2001/XMLSchema#date', 'Date'),
+		('http://www.w3.org/2001/XMLSchema#double', 'Double'),
+		('http://www.w3.org/2001/XMLSchema#long', 'Long'),
+		('http://www.w3.org/2001/XMLSchema#short', 'Single'),
+		('http://www.w3.org/2000/01/rdf-schema#Literal', 'EString')
+	};
+	
+helper def: ontologies: Set(owl!Ontology) = owl!Ontology.allInstancesFrom('IN');
+
+helper def: collectNamespaces: Set(String) = 
+	owl!OWLClass.allInstancesFrom('IN')->union(
+		owl!Property.allInstancesFrom('IN'))->iterate(it; res : Set(String) = Set{} |
+			let
+				val : String = it.URI.substring(1, it.URI.size()-it.localName.size())
+			in
+			if (res->includes(val)) then res else res->including(val) endif
+	)->symetricDifference(thisModule.ontologies->collect(o | o.URI)->asSet()).debug('ns');
+--	->reject(e | thisModule.ontologies->collect(o | o.URI)->includes(e));
+
+helper context owl!Ontology def: getDataProperties() : Set(owl!DatatypeProperty) =
+	self.universe->select(e | e.oclIsTypeOf(owl!DatatypeProperty))->asSet();
+
+helper context owl!Ontology def: getObjectProperties() : Set(owl!ObjectProperty) =
+	self.universe->select(e | e.oclIsTypeOf(owl!ObjectProperty))->asSet();
+
+helper context owl!OWLClass def: getRangesForDP() : Map(owl!DatatypeProperty, Sequence(owl!DataType)) =
+	self.ontology.getDataProperties()->select(e | e.domain->includes(self))->iterate(it; 
+		res : Map(owl!DatatypeProperty, Sequence(owl!DataType)) = Map{} |
+			res->including(it, it.range)	
+	);
+
+helper context owl!OWLClass def: getRangesForOP() : Map(owl!ObjectProperty, Sequence(owl!OWLClass)) =
+	self.ontology.getObjectProperties()->select(e | e.domain->includes(self))->iterate(it; 
+		res : Map(owl!ObjectProperty, Sequence(owl!OWLClass)) = Map{} |
+			res->including(it, it.range)
+	);
+
+helper def: findLocalName(seq : Sequence(String)) : String =
+	if (seq.last().regexReplaceAll('[0-9]+(.[0-9]+)?', '').size() = 0)
+		then thisModule.findLocalName(seq->subSequence(1, seq.size()-1))
+		else seq.last()
+	endif;
+
+helper context String def: resolveLocalName() : String =
+	let uri : String = 
+			if (self.startsWith('http://')) then
+				self.substring('http://'.size(), self.size())
+			else self endif 
+	in let splits : Sequence(String) = uri.split('/') in
+		thisModule.findLocalName(splits);
+
+endpoint rule finish() {
+	do {
+		for(namespace in thisModule.collectNamespaces) {
+			thisModule.addPackage(namespace);
+		}
+	}
+}
+
+rule addPackage(namespace : String) {
+	using
+	{
+		ns : String = 
+			if (namespace.endsWith('#'))
+				then namespace.substring(1, namespace.size()-1) 
+				else namespace
+			endif;
+		lname : String = ns.resolveLocalName();
+	}
+
+	to
+		e : ecore!EPackage (
+			name <- lname,
+			nsURI <- ns,
+			nsPrefix <- lname,
+			eClassifiers <- owl!OWLClass.allInstancesFrom('IN')->select(e | e.URI.startsWith(namespace.debug('ns'))).debug('seq')
+		)
+}
+
+rule Ontology2EPackage {
+	from
+		o : owl!Ontology
+	
+	using
+	{
+		ns: String = 
+			if (o.URI.endsWith('#'))
+				then o.URI.substring(1, o.URI.size()-1) 
+				else o.URI 
+			endif;
+		lname: String = 
+			if (o.localName.oclIsUndefined())
+				then ns.resolveLocalName()
+				else 
+					if (o.localName.size() = 0)
+						then ns.resolveLocalName()
+						else o.localName
+					endif
+			endif;
+	}
+
+	to
+		e : ecore!EPackage (
+			name <- lname,
+			nsURI <- ns,
+			nsPrefix <- lname,
+			eClassifiers <- Sequence{
+				o.universe->select(e | e.oclIsKindOf(owl!OWLClass))->select(e | e.URI = (o.URI + e.localName)),
+				o.universe->select(e | e.oclIsKindOf(owl!DataRange))
+			}
+		)
+}
+
+rule OWLClass2EClass {
+	from
+		o : owl!OWLClass (not o.localName.oclIsUndefined())
+		
+	using 
+	{
+		mapOfRangesForDP : Map(owl!DatatypeProperty, Sequence(owl!DataType)) = o.getRangesForDP();
+		mapOfRangesForOP : Map(owl!ObjectProperty, Sequence(owl!OWLClass)) = o.getRangesForOP();
+	}
+
+	to
+		e : ecore!EClass (
+			name <- o.localName,
+			eSuperTypes <- o.subClassOf->select(e | e.oclIsKindOf(owl!OWLClass)),
+			eStructuralFeatures <- Sequence{
+				mapOfRangesForDP.getKeys()->collect(e |
+					mapOfRangesForDP.get(e)->collect(r | thisModule.doDatatypeProperty2EAttribute(e, r, o))),
+				mapOfRangesForOP.getKeys()->collect(e |
+					mapOfRangesForOP.get(e)->collect(r | thisModule.doObjectProperty2EReference(e, r, o)))
+			}
+		)
+}
+
+lazy rule doDatatypeProperty2EAttribute {
+	from
+		o : owl!DatatypeProperty,
+		type : owl!DataType,
+		domain : owl!OWLClass
+		
+	using 
+	{
+		minCard: Integer = 
+			let minR : owl!MinCardinalityRestriction = 
+				domain.subClassOf->select(e | e.oclIsTypeOf(owl!MinCardinalityRestriction))->any(e | e.onProperty = o)
+			in if (minR.oclIsUndefined()) then 0-2 
+				else minR.minCardinality endif;
+		maxCard: Integer = 
+			let maxR : owl!MaxCardinalityRestriction = 
+				domain.subClassOf->select(e | e.oclIsTypeOf(owl!MaxCardinalityRestriction))->any(e | e.onProperty = o)
+			in if (maxR.oclIsUndefined()) then 0-3
+				else maxR.maxCardinality endif;
+		card: Integer = 
+			let cardR : owl!CardinalityRestriction = 
+				domain.subClassOf->select(e | e.oclIsTypeOf(owl!CardinalityRestriction))->any(e | e.onProperty = o)
+			in if (cardR.oclIsUndefined()) then 0-4
+				else cardR.cardinality endif;
+		
+		lower: Integer = 
+			if (minCard = 0-2) then 
+				if (card = 0-4) then 
+					if (o.isFunctional)	then 1 
+						else 0
+					endif
+				else card endif
+			else minCard endif;
+		upper: Integer = 
+			if (maxCard = 0-3) then
+				if (card = 0-4) then
+					if (o.isFunctional) then 1 
+						else 0-1
+					endif
+				else card endif
+			else maxCard endif;
+	}
+	
+	to
+		e : ecore!EAttribute (
+			name <- o.localName,
+			eType <- type,
+			lowerBound <- lower,
+			upperBound <- upper
+		)
+}
+
+lazy rule doObjectProperty2EReference {
+	from
+		o : owl!ObjectProperty,
+		type : owl!OWLClass,
+		domain : owl!OWLClass
+
+	using 
+	{
+		minCard: Integer = 
+			let minR : owl!MinCardinalityRestriction = 
+				domain.subClassOf->select(e | e.oclIsTypeOf(owl!MinCardinalityRestriction))->any(e | e.onProperty = o)
+			in if (minR.oclIsUndefined()) then 0-2 
+				else minR.minCardinality endif;
+		maxCard: Integer = 
+			let maxR : owl!MaxCardinalityRestriction = 
+				domain.subClassOf->select(e | e.oclIsTypeOf(owl!MaxCardinalityRestriction))->any(e | e.onProperty = o)
+			in if (maxR.oclIsUndefined()) then 0-3
+				else maxR.maxCardinality endif;
+		card: Integer = 
+			let cardR : owl!CardinalityRestriction = 
+				domain.subClassOf->select(e | e.oclIsTypeOf(owl!CardinalityRestriction))->any(e | e.onProperty = o)
+			in if (cardR.oclIsUndefined()) then 0-4
+				else cardR.cardinality endif;
+		
+		lower: Integer = 
+			if (minCard = 0-2) then 
+				if (card = 0-4) then 
+					if (o.isFunctional)	then 1 
+						else 0
+					endif
+				else card endif
+			else minCard endif;
+		upper: Integer = 
+			if (maxCard = 0-3) then
+				if (card = 0-4) then
+					if (o.isFunctional)	then 1 
+						else 0-1
+					endif
+				else card endif
+			else maxCard endif;
+	}
+
+	to
+		e : ecore!EReference (
+			name <- o.localName,
+			eType <- type,
+			lowerBound <- lower,
+			upperBound <- upper
+		)
+}
+
+rule DataType2EDataType {
+	from
+		o : owl!DataType
+		
+	to
+		e : ecore!EDataType (
+			name <- thisModule.datatypes.get(o.URI)
+		)
+}

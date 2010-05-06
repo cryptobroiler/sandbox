@@ -1,0 +1,25 @@
+<project name="owl2ecore" default="transfo">
+	
+	<!-- Change this value if you want to use another input model -->
+	<property name="model" value="foaf"/>
+	
+	<target name="transfo" depends="loadModels">
+		
+		<am3.loadModel modelhandler="EMF" name="owlModel" metamodel="owl" path="/owl2ecore/samples/${model}-owl.ecore"/>
+		
+		<am3.atl path="/owl2ecore/owl2ecore.asm">
+			<inModel name="IN" model="owlModel"/>
+			<inModel name="owl" model="owl"/>
+			<inModel name="ecore" model="%EMF"/>
+			<outModel name="OUT" model="emfModel" metamodel="%EMF"/>
+		</am3.atl>
+
+		<am3.saveModel model="emfModel" path="/owl2ecore/samples/${model}.ecore"/> 
+
+	</target>
+	
+	<target name="loadModels">
+		<!-- Load OWL metamodel-->
+		<am3.loadModel modelHandler="EMF" name="owl" metamodel="MOF" path="/owl2ecore/metamodel/OWL.ecore"/>
+	</target>
+</project>

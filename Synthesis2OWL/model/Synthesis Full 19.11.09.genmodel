@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Synthesis/src"
+    modelPluginID="Synthesis" modelName="Synthesis" importerID="org.eclipse.emf.importer.rose"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>/Users/deus/Development/Models/Synthesis Full 19.11.09.mdl</foreignModel>
+  <genPackages prefix="Predefinedobjects" disposableProviderFactory="true" ecorePackage="predefinedobjects.ecore#/">
+    <genClasses ecoreClass="predefinedobjects.ecore#//BitstringPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BitstringPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BitstringPre/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BitstringPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BitstringPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//CharPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CharPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CharPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CharPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//FramePre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FramePre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FramePre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FramePre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//FloatPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FloatPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FloatPre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FloatPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//FloatPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//Int8Pre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int8Pre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//BooleanPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BooleanPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BooleanPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//BooleanPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//Int16Pre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int16Pre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//Int32Pre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Int32Pre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//IntegerPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//IntegerPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//NonePre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//NonePre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//NonePre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//NonePre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//DoublePre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//DoublePre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//DoublePre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//DoublePre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//DoublePre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//OctetPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//OctetPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//OctetPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//OctetPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//RealPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RealPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RealPre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RealPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RealPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//StringPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//StringPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//StringPre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//StringPre/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//StringPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//Unsigned8Pre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned8Pre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//Unsigned16Pre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned16Pre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//Unsigned32Pre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/unsigned"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/nonobject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//Unsigned32Pre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//ClassifierPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ClassifierPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ClassifierPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//ComponentPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ComponentPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ComponentPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//OntologyPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//OntologyPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//OntologyPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//RegistrationCardPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RegistrationCardPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RegistrationCardPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//StructurePre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//StructurePre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//StructurePre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//ThesaurusPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ThesaurusPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ThesaurusPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//ThesaurusExtensionPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ThesaurusExtensionPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ThesaurusExtensionPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//EnglishPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//EnglishPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//EnglishPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//RussianPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RussianPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//RussianPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//ObligatoryPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ObligatoryPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ObligatoryPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//UniquePre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//UniquePre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//UniquePre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//ConstantPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ConstantPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//ConstantPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//CurrentPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/minute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/second"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/fraction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//CurrentPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//InfPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/minute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/second"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/fraction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//InfPre/name"/>
+    </genClasses>
+    <genClasses ecoreClass="predefinedobjects.ecore#//MinusinfPre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/minute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/second"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/fraction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute predefinedobjects.ecore#//MinusinfPre/name"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="synthesis" disposableProviderFactory="true" ecorePackage="synthesis.ecore#/">
+    <genClasses ecoreClass="synthesis.ecore#//ValueDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ValueDef/timeBinding"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ValueDef/verbalDefinition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ValueDef/typeOfValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ValueDef/metavalue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ValueDef/history"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ElementDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ElementDef/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/relevances"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/relevancesFor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/pathElementOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/lastElementOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/renamedIn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/depicted"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/viewDiagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/adapterDiagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/designDiagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/objectDiagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ElementDef/concepts"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//FrameDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/concretizationOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/concretizations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/classes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/frameInModule"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/parameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/slots"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/renaming"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/metavalueOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/metaslotOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/metaframe"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/metaframeOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FrameDef/actualParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TypeDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TypeDef/nonobject"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TypeDef/values"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TypeDef/typeInModule"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ScalarValueDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ScalarValueDef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//SlotDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SlotDef/values"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SlotDef/slotOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SlotDef/metaslot"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ParameterDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ParameterDef/parameterKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ParameterDef/position"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ParameterDef/parameterOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ParameterDef/type"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//AttributeDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//AttributeDef/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AttributeDef/initialValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//AttributeDef/attributeKind"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AttributeDef/inverseAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AttributeDef/classes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AttributeDef/attributeOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AttributeDef/type"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ModuleDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ModuleDef/moduleLayer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ModuleDef/maxUid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/containedFrames"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/containedClasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/containedFunctions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/imports"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/diagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ModuleDef/containedTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ClassDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/instanceType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/rootView"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/instances"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/classInModule"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/primaryKey"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/subclasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/superclasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/views"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ClassDef/TypeDef"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//SchemaDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SchemaDef/modules"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ADTDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ADTDef/process"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ADTDef/rootCEntity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ADTDef/attributes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ADTDef/invariants"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ADTDef/subtypes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ADTDef/supertypes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ADTDef/firstElementOf"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ScalarDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//CollectionDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CollectionDef/ofType"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//InvariantDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//InvariantDef/specification"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//FunctionDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//FunctionDef/specification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FunctionDef/functionInModule"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FunctionDef/exceptions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//FunctionDef/selector"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//IntegerDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntegerDef/base"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntegerDef/precision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntegerDef/scale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntegerDef/unsigned"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//StringDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StringDef/length"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ActualParameterDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ActualParameterDef/parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ActualParameterDef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//RelevanceDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RelevanceDef/accepted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RelevanceDef/rejected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RelevanceDef/strength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RelevanceDef/weak"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RelevanceDef/tight"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RelevanceDef/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RelevanceDef/relevantFor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RelevanceDef/relevant"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//SPathsRelevDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SPathsRelevDef/sim"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SPathsRelevDef/strConfKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SPathsRelevDef/valueConfKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SPathsRelevDef/accepted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SPathsRelevDef/conflict"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SPathsRelevDef/rejected"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SPathsRelevDef/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SPathsRelevDef/mpathsRelev"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SPathsRelevDef/appPath"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SPathsRelevDef/resPath"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SPathsRelevDef/simulatings"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//MPathsRelevDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//MPathsRelevDef/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//MPathsRelevDef/spathsRelevs"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//PathDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//PathDef/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PathDef/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PathDef/appPathOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PathDef/resPathOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PathDef/elements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PathDef/lastElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PathDef/firstElement"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//SimulatingDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SimulatingDef/conflict"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SimulatingDef/appAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SimulatingDef/resAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SimulatingDef/paths"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SimulatingDef/joinComps"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//RenameDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RenameDef/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RenameDef/namespace"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RenameDef/renames"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//PictureDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//PictureDef/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//PictureDef/y"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PictureDef/diagram"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PictureDef/depicts"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//DiagramDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DiagramDef/pictures"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DiagramDef/viewRootElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DiagramDef/adapterRootElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DiagramDef/designRootElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DiagramDef/objectRootElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DiagramDef/module"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ConceptDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptDef/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptDef/nameClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptDef/toRel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptDef/fromRel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptDef/instances"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptDef/descriptors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptDef/foreign"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptDef/weights"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//DescriptorDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//DescriptorDef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//DescriptorDef/weight"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//DescriptorDef/concept"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TimeConstantDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/fraction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/minute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/second"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeConstantDef/year"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TimeSliceConstantDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TimeSliceConstantDef/begin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TimeSliceConstantDef/end"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ObjectHistoryDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ObjectHistoryDef/belief"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ObjectHistoryDef/valid"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TypedVariableDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TypedVariableDef/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TypedVariableDef/typeExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TypeExprDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TypeExprDef/expression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TypeExprDef/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//WorldDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//WorldDef/memberOf"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ContextDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ContextDef/members"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ConceptWeightDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptWeightDef/class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptWeightDef/frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptWeightDef/weight"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//SelectorDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SelectorDef/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SelectorDef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//SelectorDef/priority"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//SelectorDef/selectorOf"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//UnionElementDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//UnionElementDef/tag"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//UnionElementDef/type"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//CategoryDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//CategoryDef/code"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ConceptRelDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptRelDef/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptRelDef/changed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptRelDef/complementary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ConceptRelDef/strength"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptRelDef/fromConcept"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ConceptRelDef/toConcept"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//PartRelDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//NarrowRelDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//PositiveRelDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//RelatedRelDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//RealValueDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RealValueDef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//StringValueDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StringValueDef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//UnionValueDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//UnionValueDef/tag"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//UnionValueDef/name"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ProductValueDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ProductValueDef/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//IntervalConstantDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/fraction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/hour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/minute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/second"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalConstantDef/year"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//CollectionValueDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CollectionValueDef/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//LogicProgramDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//LogicProgramDef/program"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//BitstringValueDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//BitstringValueDef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ArithmeticExprDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ArithmeticExprDef/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//IntValueDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntValueDef/value"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ProductElementDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ProductElementDef/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ProductElementDef/type"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//CEntityDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CEntityDef/simulatings"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//CompTypeDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//CompTypeDef/accepted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//CompTypeDef/rejected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//CompTypeDef/compKind"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CompTypeDef/refinedType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CompTypeDef/composings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CompTypeDef/compElements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CompTypeDef/constituents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CompTypeDef/mostCommonReduct"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ComposingDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ComposingDef/appAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ComposingDef/resAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ComposingDef/firstJoinedSims"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ComposingDef/secondJoinedSims"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ComposingDef/compType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ComposingDef/productSims"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//PropertySimDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PropertySimDef/getter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//PropertySimDef/setter"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//OperationSimDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//OperationSimDef/getterOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//OperationSimDef/setterOf"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ViewDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ViewDef/formulaKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ViewDef/viewGen"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ViewDef/forClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ViewDef/importedClasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ViewDef/overClasses"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//MetaclassDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//MetaclassDef/instInstType"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//AssociationDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AssociationDef/domain"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AssociationDef/range"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//AssociationDef/maxCard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//AssociationDef/maxInverseCard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//AssociationDef/minCard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//AssociationDef/minInverseCard"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//AssociationDef/inverse"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//AssociationMetaclassDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//RegCardDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RegCardDef/rcUid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RegCardDef/classifiers"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//UnionDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//UnionDef/tagType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//UnionDef/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ProductDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ProductDef/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ExceptionDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ExceptionDef/exceptionId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ExceptionDef/state"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ArrayDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ArrayDef/index"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//BitstringDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//BitstringDef/length"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//RealDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//RealDef/precision"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//RangeDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RangeDef/lowerBound"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RangeDef/upperBound"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//RangeDef/rangedType"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TimeDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TimeDef/precision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TimeDef/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TimeDef/to"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//IntervalDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//IntervalDef/precision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//IntervalDef/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//IntervalDef/to"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ReductDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ReductDef/accepted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ReductDef/rejected"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ReductDef/reducedType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ReductDef/taking"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ReductDef/cReduct"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//CReductDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CReductDef/reducedType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CReductDef/reduct"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//CReductDef/taking"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//StateDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StateDef/assertions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StateDef/initialFactor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//StateDef/initialValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StateDef/tokenIdentifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//StateDef/tokenType"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//StateBindingDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StateBindingDef/condition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//StateBindingDef/factor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//StateBindingDef/parameter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//StateBindingDef/state"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//TransitionDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TransitionDef/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//TransitionDef/conditions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TransitionDef/bind_from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TransitionDef/bind_ro"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TransitionDef/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//TransitionDef/to"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//ScriptDef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ScriptDef/gates"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ScriptDef/states"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference synthesis.ecore#//ScriptDef/transitions"/>
+    </genClasses>
+    <genClasses ecoreClass="synthesis.ecore#//EnumDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//BagDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//LexUnitDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//ListDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//ObjectDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//PredicateDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//SequenceDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//SetDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//TimeSliceDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//MetatypeDef"/>
+    <genClasses ecoreClass="synthesis.ecore#//ModelEntity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ModelEntity/uid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ModelEntity/res"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ModelEntity/inImportedModule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute synthesis.ecore#//ModelEntity/importedUid"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

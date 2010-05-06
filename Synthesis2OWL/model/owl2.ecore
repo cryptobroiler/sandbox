@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <ecore:EPackage name="OWL2" nsURI="http://owlodm.ontoware.org/OWL2" nsPrefix="OWL2">
+    <eClassifiers xsi:type="ecore:EClass" name="FullURI" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#FullURI"/>
+        <details key="name" value="FullURI"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyDomain" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectPropertyDomain"/>
+        <details key="name" value="ObjectPropertyDomain"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyAxiom" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectPropertyAxiom"/>
+        <details key="name" value="ObjectPropertyAxiom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Axiom"/>
+        <details key="name" value="Axiom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Annotation">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Annotation"/>
+        <details key="name" value="Annotation"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectExistsSelf" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectExistsSelf"/>
+        <details key="name" value="ObjectExistsSelf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassExpression" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ClassExpression"/>
+        <details key="name" value="ClassExpression"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnonymousIndividualAnnotation" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AnonymousIndividualAnnotation"/>
+        <details key="name" value="AnonymousIndividualAnnotation"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DisjointObjectProperties" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DisjointObjectProperties"/>
+        <details key="name" value="DisjointObjectProperties"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InverseFunctionalObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#InverseFunctionalObjectProperty"/>
+        <details key="name" value="InverseFunctionalObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectSomeValuesFrom" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectSomeValuesFrom"/>
+        <details key="name" value="ObjectSomeValuesFrom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NegativeObjectPropertyAssertion" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#NegativeObjectPropertyAssertion"/>
+        <details key="name" value="NegativeObjectPropertyAssertion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Assertion" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Assertion"/>
+        <details key="name" value="Assertion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataPropertyRange" eSuperTypes="/0/DataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataPropertyRange"/>
+        <details key="name" value="DataPropertyRange"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataPropertyAxiom" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataPropertyAxiom"/>
+        <details key="name" value="DataPropertyAxiom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnnotationProperty" eSuperTypes="/0/Entity">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AnnotationProperty"/>
+        <details key="name" value="AnnotationProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Entity">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Entity"/>
+        <details key="name" value="Entity"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataPropertyExpression" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataPropertyExpression"/>
+        <details key="name" value="DataPropertyExpression"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataSomeValuesFrom" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataSomeValuesFrom"/>
+        <details key="name" value="DataSomeValuesFrom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataProperty" eSuperTypes="/0/DataPropertyExpression /0/Entity">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataProperty"/>
+        <details key="name" value="DataProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="KeyFor" eSuperTypes="/0/ObjectAndDataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#KeyFor"/>
+        <details key="name" value="KeyFor"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyExpression" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectPropertyExpression"/>
+        <details key="name" value="ObjectPropertyExpression"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectAndDataPropertyAxiom" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectAndDataPropertyAxiom"/>
+        <details key="name" value="ObjectAndDataPropertyAxiom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InverseObjectProperties" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#InverseObjectProperties"/>
+        <details key="name" value="InverseObjectProperties"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EquivalentClasses" eSuperTypes="/0/ClassAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#EquivalentClasses"/>
+        <details key="name" value="EquivalentClasses"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassAxiom" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ClassAxiom"/>
+        <details key="name" value="ClassAxiom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EquivalentObjectProperties" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#EquivalentObjectProperties"/>
+        <details key="name" value="EquivalentObjectProperties"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataMaxCardinality" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataMaxCardinality"/>
+        <details key="name" value="DataMaxCardinality"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InverseObjectProperty" eSuperTypes="/0/ObjectPropertyExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#InverseObjectProperty"/>
+        <details key="name" value="InverseObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyRange" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectPropertyRange"/>
+        <details key="name" value="ObjectPropertyRange"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="/0/ClassExpression /0/Entity">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Class"/>
+        <details key="name" value="Class"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SameIndividual" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#SameIndividual"/>
+        <details key="name" value="SameIndividual"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FacetConstantPair">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#FacetConstantPair"/>
+        <details key="name" value="FacetConstantPair"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionalObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#FunctionalObjectProperty"/>
+        <details key="name" value="FunctionalObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectHasValue" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectHasValue"/>
+        <details key="name" value="ObjectHasValue"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SubClassOf" eSuperTypes="/0/ClassAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#SubClassOf"/>
+        <details key="name" value="SubClassOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DisjointClasses" eSuperTypes="/0/ClassAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DisjointClasses"/>
+        <details key="name" value="DisjointClasses"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectComplementOf" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectComplementOf"/>
+        <details key="name" value="ObjectComplementOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DifferentIndividuals" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DifferentIndividuals"/>
+        <details key="name" value="DifferentIndividuals"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectMaxCardinality" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectMaxCardinality"/>
+        <details key="name" value="ObjectMaxCardinality"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Constant">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Constant"/>
+        <details key="name" value="Constant"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Individual" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Individual"/>
+        <details key="name" value="Individual"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectAllValuesFrom" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectAllValuesFrom"/>
+        <details key="name" value="ObjectAllValuesFrom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AsymmetricObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AsymmetricObjectProperty"/>
+        <details key="name" value="AsymmetricObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnnotationByConstant" eSuperTypes="/0/Annotation">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AnnotationByConstant"/>
+        <details key="name" value="AnnotationByConstant"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataAllValuesFrom" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataAllValuesFrom"/>
+        <details key="name" value="DataAllValuesFrom"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EntityAnnotation" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#EntityAnnotation"/>
+        <details key="name" value="EntityAnnotation"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnnotationByEntity" eSuperTypes="/0/Annotation">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AnnotationByEntity"/>
+        <details key="name" value="AnnotationByEntity"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="URI" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#URI"/>
+        <details key="name" value="URI"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataExactCardinality" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataExactCardinality"/>
+        <details key="name" value="DataExactCardinality"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NegativeDataPropertyAssertion" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#NegativeDataPropertyAssertion"/>
+        <details key="name" value="NegativeDataPropertyAssertion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionalDataProperty" eSuperTypes="/0/DataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#FunctionalDataProperty"/>
+        <details key="name" value="FunctionalDataProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataOneOf" eSuperTypes="/0/DataRange">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataOneOf"/>
+        <details key="name" value="DataOneOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataRange"/>
+        <details key="name" value="DataRange"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EquivalentDataProperties" eSuperTypes="/0/DataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#EquivalentDataProperties"/>
+        <details key="name" value="EquivalentDataProperties"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DisjointUnion" eSuperTypes="/0/ClassAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DisjointUnion"/>
+        <details key="name" value="DisjointUnion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectExactCardinality" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectExactCardinality"/>
+        <details key="name" value="ObjectExactCardinality"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IrreflexiveObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#IrreflexiveObjectProperty"/>
+        <details key="name" value="IrreflexiveObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnonymousIndividual" eSuperTypes="/0/Individual">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AnonymousIndividual"/>
+        <details key="name" value="AnonymousIndividual"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflexiveObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ReflexiveObjectProperty"/>
+        <details key="name" value="ReflexiveObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectUnionOf" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectUnionOf"/>
+        <details key="name" value="ObjectUnionOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectProperty" eSuperTypes="/0/ObjectPropertyExpression /0/Entity">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectProperty"/>
+        <details key="name" value="ObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbbreviatedURI" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AbbreviatedURI"/>
+        <details key="name" value="AbbreviatedURI"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataPropertyDomain" eSuperTypes="/0/DataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataPropertyDomain"/>
+        <details key="name" value="DataPropertyDomain"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Ontology">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Ontology"/>
+        <details key="name" value="Ontology"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectIntersectionOf" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectIntersectionOf"/>
+        <details key="name" value="ObjectIntersectionOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TransitiveObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#TransitiveObjectProperty"/>
+        <details key="name" value="TransitiveObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SubObjectPropertyOf" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#SubObjectPropertyOf"/>
+        <details key="name" value="SubObjectPropertyOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectOneOf" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectOneOf"/>
+        <details key="name" value="ObjectOneOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataComplementOf" eSuperTypes="/0/DataRange">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataComplementOf"/>
+        <details key="name" value="DataComplementOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DisjointDataProperties" eSuperTypes="/0/DataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DisjointDataProperties"/>
+        <details key="name" value="DisjointDataProperties"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SubObjectProperty" eSuperTypes="/1/Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#SubObjectProperty"/>
+        <details key="name" value="SubObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SymmetricObjectProperty" eSuperTypes="/0/ObjectPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#SymmetricObjectProperty"/>
+        <details key="name" value="SymmetricObjectProperty"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NamedIndividual" eSuperTypes="/0/Individual /0/Entity">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#NamedIndividual"/>
+        <details key="name" value="NamedIndividual"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SubDataPropertyOf" eSuperTypes="/0/DataPropertyAxiom /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#SubDataPropertyOf"/>
+        <details key="name" value="SubDataPropertyOf"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataPropertyAssertion" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataPropertyAssertion"/>
+        <details key="name" value="DataPropertyAssertion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Declaration" eSuperTypes="/0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Declaration"/>
+        <details key="name" value="Declaration"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Datatype" eSuperTypes="/0/Entity /0/DataRange">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#Datatype"/>
+        <details key="name" value="Datatype"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataMinCardinality" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataMinCardinality"/>
+        <details key="name" value="DataMinCardinality"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DatatypeRestriction" eSuperTypes="/0/DataRange">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DatatypeRestriction"/>
+        <details key="name" value="DatatypeRestriction"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnnotationByAnonymousIndividual" eSuperTypes="/0/Annotation">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#AnnotationByAnonymousIndividual"/>
+        <details key="name" value="AnnotationByAnonymousIndividual"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectPropertyAssertion" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectPropertyAssertion"/>
+        <details key="name" value="ObjectPropertyAssertion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectMinCardinality" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ObjectMinCardinality"/>
+        <details key="name" value="ObjectMinCardinality"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassAssertion" eSuperTypes="/0/Assertion /0/Axiom">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#ClassAssertion"/>
+        <details key="name" value="ClassAssertion"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataHasValue" eSuperTypes="/0/ClassExpression">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://owlodm.ontoware.org/OWL2#DataHasValue"/>
+        <details key="name" value="DataHasValue"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage name="owl" nsURI="http://www.w3.org/2002/07/owl" nsPrefix="owl">
+    <eClassifiers xsi:type="ecore:EClass" name="Thing">
+      <eAnnotations source="rdf">
+        <details key="uri" value="http://www.w3.org/2002/07/owl#Thing"/>
+        <details key="name" value="Thing"/>
+      </eAnnotations>
+      <eAnnotations source="owl">
+        <details key="type" value="Class"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="versionURI" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#versionURI"/>
+          <details key="name" value="versionURI"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subDataPropertyExpression"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#subDataPropertyExpression"/>
+          <details key="name" value="subDataPropertyExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="axioms" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#axioms"/>
+          <details key="name" value="axioms"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="annotationValue" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#annotationValue"/>
+          <details key="name" value="annotationValue"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constants" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#constants"/>
+          <details key="name" value="constants"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constant" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#constant"/>
+          <details key="name" value="constant"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entityAnnotations" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#entityAnnotations"/>
+          <details key="name" value="entityAnnotations"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousIndividual"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#anonymousIndividual"/>
+          <details key="name" value="anonymousIndividual"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="axiomAnnotations" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#axiomAnnotations"/>
+          <details key="name" value="axiomAnnotations"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#dataRange"/>
+          <details key="name" value="dataRange"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpressions"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#dataPropertyExpressions"/>
+          <details key="name" value="dataPropertyExpressions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="superObjectPropertyExpression"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#superObjectPropertyExpression"/>
+          <details key="name" value="superObjectPropertyExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="classExpression" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#classExpression"/>
+          <details key="name" value="classExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="equivalentClassExpressions"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#equivalentClassExpressions"/>
+          <details key="name" value="equivalentClassExpressions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ontologyURI" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#ontologyURI"/>
+          <details key="name" value="ontologyURI"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataPropertyExpression"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#dataPropertyExpression"/>
+          <details key="name" value="dataPropertyExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entity" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#entity"/>
+          <details key="name" value="entity"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpression"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#objectPropertyExpression"/>
+          <details key="name" value="objectPropertyExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#datatype"/>
+          <details key="name" value="datatype"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="disjointClassExpressions"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#disjointClassExpressions"/>
+          <details key="name" value="disjointClassExpressions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="restrictions" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#restrictions"/>
+          <details key="name" value="restrictions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="classExpressions" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#classExpressions"/>
+          <details key="name" value="classExpressions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectProperty" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#objectProperty"/>
+          <details key="name" value="objectProperty"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="individual" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#individual"/>
+          <details key="name" value="individual"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="superDataPropertyExpression"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#superDataPropertyExpression"/>
+          <details key="name" value="superDataPropertyExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetValue" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#targetValue"/>
+          <details key="name" value="targetValue"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subClassExpression" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#subClassExpression"/>
+          <details key="name" value="subClassExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="anonymousIndiviudalAnnotations"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#anonymousIndiviudalAnnotations"/>
+          <details key="name" value="anonymousIndiviudalAnnotations"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="range" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#range"/>
+          <details key="name" value="range"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="superClassExpression"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#superClassExpression"/>
+          <details key="name" value="superClassExpression"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subObjectPropertyExpressions"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#subObjectPropertyExpressions"/>
+          <details key="name" value="subObjectPropertyExpressions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="domain" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#domain"/>
+          <details key="name" value="domain"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entityURI" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#entityURI"/>
+          <details key="name" value="entityURI"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inverseObjectProperties"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#inverseObjectProperties"/>
+          <details key="name" value="inverseObjectProperties"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetIndividual" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#targetIndividual"/>
+          <details key="name" value="targetIndividual"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceIndividual" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#sourceIndividual"/>
+          <details key="name" value="sourceIndividual"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="annotationProperty" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#annotationProperty"/>
+          <details key="name" value="annotationProperty"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sameIndividuals" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#sameIndividuals"/>
+          <details key="name" value="sameIndividuals"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="differentIndividuals"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#differentIndividuals"/>
+          <details key="name" value="differentIndividuals"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="importedOntologies" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#importedOntologies"/>
+          <details key="name" value="importedOntologies"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ontologyAnnotations"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#ontologyAnnotations"/>
+          <details key="name" value="ontologyAnnotations"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="unionClass" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#unionClass"/>
+          <details key="name" value="unionClass"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="individuals" upperBound="-1"
+          eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#individuals"/>
+          <details key="name" value="individuals"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectPropertyExpressions"
+          upperBound="-1" eType="/1/Thing">
+        <eAnnotations source="rdf">
+          <details key="uri" value="http://owlodm.ontoware.org/OWL2#objectPropertyExpressions"/>
+          <details key="name" value="objectPropertyExpressions"/>
+        </eAnnotations>
+        <eAnnotations source="owl">
+          <details key="type" value="ObjectProperty"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="EString"/>
+  </ecore:EPackage>
+</xmi:XMI>
