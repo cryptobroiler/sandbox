@@ -74,7 +74,7 @@ helper context Synthesis!ClassDef def: isUnionClass() : Boolean =
 	 	false
 	 endif;
 
-helper context Synthesis!ClassDef def: isContainmentInvariant(): Boolean =
+helper context Synthesis!ClassDef def: hasContainmentInvariant(): Boolean =
 	if self.hasInvariant() then 
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
@@ -91,7 +91,7 @@ helper context Synthesis!ClassDef def: isContainmentInvariant(): Boolean =
 		false
 	endif;
 
-helper context Synthesis!ClassDef def: isEquivalenceInvariant(): Boolean =
+helper context Synthesis!ClassDef def: hasEquivalenceInvariant(): Boolean =
 	if self.hasInvariant() then 
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
@@ -112,7 +112,7 @@ helper context Synthesis!Term def: extractClassesRecursive() : Sequence(Synthesi
 	if self.oclIsTypeOf(Synthesis!ClassName) then
 		Sequence{self.classNameOf}
 	else
-		if self.oclIsKindOf(Synthesis!FunctionCall) then
+		if self.oclIsKindOf(Synthesis!FunctionCall) and self.terms->asSequence()->size()=2 then
 			self.terms->asSequence()->at(1)->extractClassesRecursive()->union(self.terms->asSequence()->at(2)->extractClassesRecursive())
 		else
 			Sequence{}
@@ -140,6 +140,49 @@ helper context Synthesis!AssociationMetaclassDef def: getClassesWithProperty(): 
 	select(t|t.oclIsTypeOf(Synthesis!ClassDef))->select(t | 
 		t.instanceType.attributes->asSequence()->
 		select(a|a.classes.includes(self))->notEmpty());
+
+	
+helper context Synthesis!CollectionComprehension def: checkForPropertyRestrictions(): Boolean =
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) then
+		let p : Synthesis!ArithmeticPredicate = self.formula 
+		in
+			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
+					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
+					if(p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclTypeOf(Synthesis!AttributeName)) then
+					true
+					else
+						false
+					endif
+			else
+				false
+			endif
+	else
+		false
+	endif;
+
+helper context Synthesis!ClassDef def: getOnProperty(): Synthesis!AttributeDef =
+	self.getInvariant.predicativeSpec.terms->asSequence()->at(2).terms->asSequence()->at(1).terms->asSequence()->at(1).attributeNameOf;
+helper context Synthesis!ClassDef def: hasPropertyRestrictionInvariant(): Boolean = 
+	if self.hasContaintmentInvariant() then
+		let p : Synthesis!SetPredicate = self.getInvariant.predicativeSpec
+		in 
+		   let pterms : Sequence(Synthesis!Term) = p.terms->asSequence()
+		   in
+		   		if pterms->at(1).oclIsTypeOf(Synthesis!ClassName) and
+		   		   pterms->at(2).oclIsTypeOf(Synthesis!CollectionComprehension) then
+				   if pterms->at(2).checkForPropertyRestrictions() then
+				      true
+				   else
+				   	  false
+				   endif
+				else
+					false
+				endif
+	else
+		false
+	endif;
+				   
+			
 -- =============================================================================
 -- RULES
 -- =============================================================================
@@ -280,6 +323,34 @@ rule ScalarType2RDFSDataType {
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
 }
  
+rule RestrictedClass2OWLClass {
+	from
+		c : Synthesis!ClassDef (
+				if c.oclIsTypeOf(Synthesis!ClassDef) then
+					if not c.instanceType.oclIsUndefined() 
+				 then if c.hasPropertyRestrictionInvariant() then
+				  true
+				  else false
+				  endif
+				  else
+				  	false
+					endif
+					else false
+					endif) 	
+	to
+				oc : OWL!OWLClass (
+			subClassOf <- c.superclasses,
+			uriRef <- uri,
+			label <- label
+		),
+		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
+		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName ( name <- c.instanceType.name ),
+		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
+	do {
+		
+	}
+}
  rule IntersectionClass2OWLIntersection {
  	from 
 		c : Synthesis!ClassDef (
