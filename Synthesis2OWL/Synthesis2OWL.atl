@@ -142,13 +142,17 @@ helper context Synthesis!AssociationMetaclassDef def: getClassesWithProperty(): 
 		select(a|a.classes.includes(self))->notEmpty());
 
 	
-helper context Synthesis!CollectionComprehension def: checkForPropertyRestrictions(): Boolean =
-	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) then
+helper context Synthesis!CollectionComprehension def: isCardinalityInvariant(): Boolean =
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate)
+		and self.formula.symbol = '=' 
+		then
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
 			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
 					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
-					if(p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclTypeOf(Synthesis!AttributeName)) then
+					if p.terms->asSequence()->at(1).name='cardinal' and 
+					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!AttributeName)
+					then
 					true
 					else
 						false
@@ -160,11 +164,62 @@ helper context Synthesis!CollectionComprehension def: checkForPropertyRestrictio
 		false
 	endif;
 
+helper context Synthesis!CollectionComprehension def: isMinCardinalityInvariant(): Boolean =
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) and
+		self.formula.symbol = '>=' 
+		then
+		let p : Synthesis!ArithmeticPredicate = self.formula 
+		in
+			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
+					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
+					if p.terms->asSequence()->at(1).name='cardinal' and 
+					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!AttributeName)
+					then
+					true
+					else
+						false
+					endif
+			else
+				false
+			endif
+	else
+		false
+	endif;
+
+helper context Synthesis!CollectionComprehension def: isMaxCardinalityInvariant(): Boolean =
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) and
+		self.formula.symbol = '<=' 
+		then
+		let p : Synthesis!ArithmeticPredicate = self.formula 
+		in
+			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
+					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
+					if p.terms->asSequence()->at(1).name='cardinal' and 
+					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!AttributeName)
+					then
+					true
+					else
+						false
+					endif
+			else
+				false
+			endif
+	else
+		false
+	endif;
+
+helper context Synthesis!CollectionComprehension def: checkForPropertyRestrictions(): Boolean =
+	self.isCardinalityInvariant() or self.isMinCardinalityInvariant() or self.isMaxCardinalityInvariant();
+
+helper context Synthesis!ClassDef def: getCardinalityValue(): String =
+	self.getInvariant().predicativeSpec.terms->asSequence()->at(2).formula.terms->asSequence()->at(2).value;
+
 helper context Synthesis!ClassDef def: getOnProperty(): Synthesis!AttributeDef =
-	self.getInvariant.predicativeSpec.terms->asSequence()->at(2).terms->asSequence()->at(1).terms->asSequence()->at(1).attributeNameOf;
+	self.getInvariant().predicativeSpec.terms->asSequence()->at(2).formula.terms->asSequence()->at(1).terms->asSequence()->at(1).attributeNameOf;
+
 helper context Synthesis!ClassDef def: hasPropertyRestrictionInvariant(): Boolean = 
-	if self.hasContaintmentInvariant() then
-		let p : Synthesis!SetPredicate = self.getInvariant.predicativeSpec
+	if self.hasContainmentInvariant() then
+		let p : Synthesis!SetPredicate = self.getInvariant().predicativeSpec
 		in 
 		   let pterms : Sequence(Synthesis!Term) = p.terms->asSequence()
 		   in
@@ -181,30 +236,16 @@ helper context Synthesis!ClassDef def: hasPropertyRestrictionInvariant(): Boolea
 	else
 		false
 	endif;
+
+helper context Synthesis!ClassDef def: extractCollectionComprehension(): Synthesis!CollectionComprehension = 
+	self.getInvariant().predicativespec.terms->asSequence()->at(2);
+
+
 				   
 			
 -- =============================================================================
 -- RULES
 -- =============================================================================
---rule SynthesisClass2OWLClass {
---	from
---		f : Synthesis!ClassDef (
---			f.oclIsTypeOf(Synthesis!ClassDef)
---			)
---	to
---		oc : OWL!OWLClass (
---			subClassOf <- f.superclasses,
---			uriRef <- u,
---			label <- label
---		),
---		label : OWL!PlainLiteral ( lexicalForm <- f.name ),
---		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
---		l : OWL!LocalName ( name <- f.name ),
---		uri : OWL!UniformResourceIdentifier ( name <- f.name )
---					
---}
---
---
 --
 --
 --rule SynthesisModule2OWLOntology {
@@ -226,60 +267,6 @@ helper context Synthesis!ClassDef def: hasPropertyRestrictionInvariant(): Boolea
 --		)
 --}
 --
---rule SynthesisAssociation2OWLObjectProperty {
---	from 
---		sa : Synthesis!AssociationDef (
---			sa.oclIsTypeOf(Synthesis!AssociationDef)
---			)
---	to
---		op : OWL!OWLObjectProperty (
---			domain <- sa.domain,
---			range <- sa.range,
---			OWLInverseOf <- sa.inverse,
---			uriRef <- o_u),
---		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
---		o_l : OWL!LocalName ( name <- sa.inverse.name + '.' + sa.name ),
---		o_uri : OWL!UniformResourceIdentifier ( name <- sa.inverse.name + '.' + sa.name )
---	do {
---		thisModule.addMinCardinality(sa,sa.domain);
---		thisModule.addMaxCardinality(sa,sa.domain);
---	}
---		
---			
---}
---
---rule addMinCardinality( p : Synthesis!AccociationDef, class : Synthesis!ClassDef ) {
---	to
---		c : OWL!MinCardinalityRestriction (
---			superClass <- class,
---			OWLMinCardinality <- literal,
---			OWLOnProperty <- p
---		),
---		literal : OWL!TypedLiteral (
---			lexicalForm <- p.minCard.toString(),
---			datatypeURI <- o_u		),
---		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
---		o_l : OWL!LocalName ( name <- 'Integer' ),
---		o_uri : OWL!UniformResourceIdentifier ( name <- 'IntegerURI' )
---		
---}
---
---rule addMaxCardinality( p : Synthesis!AccociationDef, class : Synthesis!ClassDef ) {
---	to
---		c : OWL!MaxCardinalityRestriction (
---			superClass <- class,
---			OWLMaxCardinality <- literal,
---			OWLOnProperty <- p
---		),
---		literal : OWL!TypedLiteral (
---			lexicalForm <- p.maxCard.toString(),
---			datatypeURI <-o_u		),
---		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
---		o_l : OWL!LocalName ( name <- 'Integer' ),
---		o_uri : OWL!UniformResourceIdentifier ( name <- 'IntegerURI' )
---}
---
-
 
 rule ScalarType2RDFSDataType {
 	from
@@ -348,8 +335,22 @@ rule RestrictedClass2OWLClass {
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
 	do {
-		
+		if (c.extractCollectionComprehesion().isCardinalityInvariant()) {
+			thisModule.addCardinalityRestrictionToClass(c,c.getOnProperty().classes->asSequence()->first(),c.getCardinalityValue());
+		} else {
+			if (c.extractCollectionComprehension().isMaxCardinalityInvariant()) {
+				thisModule.addMaxCardinalityRestrictionToClass(c,c.getOnProperty().classes->asSequence()->first(),
+					c.getCardinalityValue());
+			} else {
+				if (c.extractCollectionComprehension().isMinCardinalityInvariant()) {
+					thisModule.addMinCardinalityRestrictionToClass(c,c.getOnProperty().classes->asSequence()->first(),
+					c.getCardinalityValue());
+				}
+			}
+		}
 	}
+		
+	
 }
  rule IntersectionClass2OWLIntersection {
  	from 
@@ -447,7 +448,7 @@ rule addFunctionalProperty(am : Synthesis!AssociationMetaclassDef) {
 -- =============================================================================
 rule addCardinalityRestrictionToClass ( c: Synthesis!ClassDef, 
 										p: Synthesis!AssociationMetaclassDef,
-										card: Synthesis!IntegerValueDef) {
+										card: String) {
 	to
 		r: OWL!CardinalityRestriction(
 			superClass <- c,
@@ -455,14 +456,14 @@ rule addCardinalityRestrictionToClass ( c: Synthesis!ClassDef,
 			OWLOnProperty <- p
 		),
 		literal : OWL!TypedLiteral (
-			lexicalForm <- card.toString(),
+			lexicalForm <- card,
 			datatypeURI <- thisModule.getIntegerURI()
 		)
 }
 
 rule addMinCardinalityRestrictionToClass ( c: Synthesis!ClassDef, 
 										p: Synthesis!AssociationMetaclassDef,
-										minCard: Synthesis!IntegerValueDef) {
+										minCard: String) {
 	to
 		r: OWL!MaxCardinalityRestriction(
 			superClass <- c,
@@ -470,14 +471,14 @@ rule addMinCardinalityRestrictionToClass ( c: Synthesis!ClassDef,
 			OWLOnProperty <- p
 		),
 		literal : OWL!TypedLiteral (
-			lexicalForm <- minCard.toString(),
+			lexicalForm <- minCard,
 			datatypeURI <- thisModule.getIntegerURI()
 		)
 }
 
 rule addMaxCardinalityRestrictionToClass ( c: Synthesis!ClassDef, 
 										p: Synthesis!AssociationMetaclassDef,
-										maxCard: Synthesis!IntegerValueDef) {
+										maxCard: String) {
 	to
 		r: OWL!MaxCardinalityRestriction(
 			superClass <- c,
@@ -485,7 +486,7 @@ rule addMaxCardinalityRestrictionToClass ( c: Synthesis!ClassDef,
 			OWLOnProperty <- p
 		),
 		literal : OWL!TypedLiteral (
-			lexicalForm <- maxCard.toString(),
+			lexicalForm <- maxCard,
 			datatypeURI <- thisModule.getIntegerURI()
 		)
 }
@@ -509,7 +510,7 @@ rule addSomeValuesFromRestrictionToClass (c: Synthesis!ClassDef,
 	to
 		r: OWL!SomeValuesFromRestriction(
 			superclass <- c,
-			OWLSomeVluesFromClass <- fromClass,
+			OWLSomeValuesFromClass <- fromClass,
 			OWLOnProperty <- p)
 }
 

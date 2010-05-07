@@ -170,12 +170,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="IntegerValueDef" eSuperTypes="#//ValueDef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
   </eClassifiers>
-  <eSubpackages name="Expressions" nsURI="http://Synthesis.ecore/Expressions" nsPrefix="syn-expr">
-    <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" eSuperTypes="#//Formulae/Term #//Expressions/Multiplier"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Multiplier"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpression"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpression"/>
-  </eSubpackages>
   <eSubpackages name="Programs" nsURI="http://Synthesis.ecore/Programs" nsPrefix="syn-prog">
     <eClassifiers xsi:type="ecore:EClass" name="Program"/>
     <eClassifiers xsi:type="ecore:EClass" name="RuleList" eSuperTypes="#//Programs/Program">
