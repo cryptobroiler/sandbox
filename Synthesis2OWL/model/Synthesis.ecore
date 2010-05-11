@@ -212,7 +212,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="2"
-          upperBound="-1" eType="#//Formulae/Formula" containment="true"/>
+          upperBound="-1" eType="#//Formulae/Formula"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
