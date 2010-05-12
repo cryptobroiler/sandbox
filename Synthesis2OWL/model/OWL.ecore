@@ -251,6 +251,8 @@
           ordered="false" upperBound="-1" eType="#/1/AllValuesFromRestriction" eOpposite="#/1/AllValuesFromRestriction/OWLAllValuesFromClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="someValuesFromRestrictionClass"
           ordered="false" upperBound="-1" eType="#/1/SomeValuesFromRestriction" eOpposite="#/1/SomeValuesFromRestriction/OWLSomeValuesFromClass"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringRepr" ordered="false"
+          unique="false" eType="#/2/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IntersectionClass" eSuperTypes="#/1/OWLClass">
       <eStructuralFeatures xsi:type="ecore:EReference" name="OWLIntersectionOf" ordered="false"

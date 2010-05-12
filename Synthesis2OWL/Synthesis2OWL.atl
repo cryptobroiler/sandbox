@@ -22,9 +22,9 @@ helper context Synthesis!ClassDef def: getInvariant() : Synthesis!Invariant =
 helper context Synthesis!Atom def: intersectionCheck() : Boolean =
 		if self.oclIsTypeOf(Synthesis!SetPredicate) then
 		   if self.symbol = '<=' then
-		   let pterms:Sequence(Synthesis!Term) = self.terms->asSequence()
+		   let pterms:Sequence(Synthesis!ValueDef) = self.terms->asSequence()
 		   in
-		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassName)
+		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
 				   and self.terms->at(2)->oclIsTypeOf(Synthesis!BuiltInFunction) then
 				   if self.terms->at(2).name = 'intersect' then
 				      true
@@ -44,9 +44,9 @@ helper context Synthesis!Atom def: intersectionCheck() : Boolean =
 helper context Synthesis!Atom def: unionCheck() : Boolean =
 		if self.oclIsTypeOf(Synthesis!SetPredicate) then
 		   if self.symbol = '<=' then
-		   let pterms:Sequence(Synthesis!Term) = self.terms->asSequence()
+		   let pterms:Sequence(Synthesis!ValueDef) = self.terms->asSequence()
 		   in
-		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassName)
+		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
 				   and self.terms->at(2)->oclIsTypeOf(Synthesis!BuiltInFunction) then
 				   if self.terms->at(2).name = 'union' then
 				      true
@@ -141,9 +141,9 @@ helper context Synthesis!ClassDef def: hasEquivalenceInvariant(): Boolean =
 		false
 	endif;
 	
-helper context Synthesis!Term def: extractClassesRecursive() : Sequence(Synthesis!ClassDef) = 
-	if self.oclIsTypeOf(Synthesis!ClassName) then
-		Sequence{self.classNameOf}
+helper context Synthesis!ValueDef def: extractClassesRecursive() : Sequence(Synthesis!ClassDef) = 
+	if self.oclIsTypeOf(Synthesis!ClassDef) then
+		Sequence{self}
 	else
 		if self.oclIsKindOf(Synthesis!FunctionCall) and self.terms->asSequence()->size()=2 then
 			self.terms->asSequence()->at(1)->extractClassesRecursive()->union(self.terms->asSequence()->at(2)->extractClassesRecursive())
@@ -158,7 +158,6 @@ helper context Synthesis!Formula def: getIntersectionAtom() : Synthesis!Atom =
 
 helper context Synthesis!Formula def: getUnionAtom() : Synthesis!Atom = 
 	self.splitToAtoms()->select(t|t.unionCheck())->first();
---helper context Synthesis!Formula def: getRestrictionAtom() : Synthesis!Atom = 
 helper context Synthesis!ClassDef def: getIntersectionClasses() : Sequence( Synthesis!ClassDef ) = 
 	let p : Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
@@ -186,9 +185,11 @@ helper def: getIntegerURI() : OclAny =
 helper context Synthesis!AssociationMetaclassDef def: getClassesWithProperty(): Sequence( Synthesis!ClassDef ) = 
 	Synthesis!ClassDef.allInstances()->
 	asSequence()->
-	select(t|t.oclIsTypeOf(Synthesis!ClassDef))->select(t | 
+	select(t|t.oclIsTypeOf(Synthesis!ClassDef))->select(t | if(t.instanceType.attributes->notEmpty()) then
 		t.instanceType.attributes->asSequence()->
-		select(a|a.classes.includes(self))->notEmpty());
+		select(a|a.classes.includes(self))->notEmpty()
+		else false
+		endif);
 
 	
 helper context Synthesis!CollectionComprehension def: isCardinalityInvariant(): Boolean =
@@ -198,9 +199,9 @@ helper context Synthesis!CollectionComprehension def: isCardinalityInvariant(): 
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
 			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
-					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
+					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerValueDef)) then
 					if p.terms->asSequence()->at(1).name='cardinal' and 
-					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!AttributeName)
+					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
 					then
 					true
 					else
@@ -220,9 +221,9 @@ helper context Synthesis!CollectionComprehension def: isMinCardinalityInvariant(
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
 			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
-					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
+					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerValueDef)) then
 					if p.terms->asSequence()->at(1).name='cardinal' and 
-					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!AttributeName)
+					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
 					then
 					true
 					else
@@ -248,7 +249,7 @@ helper context Synthesis!CollectionComprehension def: isSomeValuesFromInvariant(
 								if op1.symbol = 'is_in' and op2.symbol = 'is_in' then
 									if (op1.terms->at(2)=self.formula.var) and 
 									   (op2.terms->at(2)=self.formula.var) and
-									   (op1.oclIsTypeOf(Synthesis!AttributeName)) and 
+									   (op1.oclIsTypeOf(Synthesis!GetFunction)) and 
 									   (op2.oclIsTypeOf(Synthesis!ClassName)) then
 									   	true
 									else
@@ -284,9 +285,9 @@ helper context Synthesis!CollectionComprehension def: isMaxCardinalityInvariant(
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
 			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
-					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerConstant)) then
+					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerValueDef)) then
 					if p.terms->asSequence()->at(1).name='cardinal' and 
-					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!AttributeName)
+					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
 					then
 					true
 					else
@@ -306,12 +307,12 @@ helper context Synthesis!CollectionComprehension def: getCardinalityValue(): Str
 	self.formula.terms->asSequence()->at(2).value;
 
 helper context Synthesis!CollectionComprehension def: getOnProperty(): Synthesis!AttributeDef =
-	self.formula.terms->asSequence()->at(1).terms->asSequence()->at(1).attributeNameOf;
+	self.formula.terms->asSequence()->at(1).terms->asSequence()->at(1).attribute;
 
 helper context Synthesis!Atom def: propertyRestrictionCheck(): Boolean = 
-	let pterms : Sequence(Synthesis!Term) = self.terms->asSequence()
+	let pterms : Sequence(Synthesis!ValueDef) = self.terms->asSequence()
 	in
-		if pterms->at(1).oclIsTypeOf(Synthesis!ClassName) and
+		if pterms->at(1).oclIsTypeOf(Synthesis!ClassDef) and
 		   pterms->at(2).oclIsTypeOf(Synthesis!CollectionComprehension) then
 			if pterms->at(2).checkForPropertyRestrictions() then
 				true
@@ -425,7 +426,8 @@ rule ScalarType2RDFSDataType {
 		oc : OWL!OWLClass (
 			subClassOf <- c.superclasses,
 			uriRef <- uri,
-			label <- label
+			label <- label,
+			stringRepr <- c.instanceType.name
 		),
 		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
 		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
@@ -451,26 +453,26 @@ rule RestrictedClass2OWLClass {
 				oc : OWL!OWLClass (
 			subClassOf <- c.superclasses,
 			uriRef <- uri,
-			label <- label
+			label <- label,
+			stringRepr <- c.instanceType.name
 		),
 		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
 		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
 	do {
-		
 		for(p in c.extractPropertyRestrictions()) {
-		if (p.isCardinalityInvariant()) {
-			thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
-				p.getCardinalityValue());
-		} else {
-			if (p.isMaxCardinalityInvariant()) {
-				thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+			if (p.isCardinalityInvariant()) {
+				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
 					p.getCardinalityValue());
 			} else {
-				if (p.isMinCardinalityInvariant()) {
-					thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
-					p.getCardinalityValue());
+				if (p.isMaxCardinalityInvariant()) {
+					thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				} else {
+					if (p.isMinCardinalityInvariant()) {
+						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
 				}
 			}
 		}
@@ -498,11 +500,32 @@ rule RestrictedClass2OWLClass {
 			subClassOf <- c.superclasses,
 			OWLIntersectionOf <- c.getIntersectionClasses(),
 			uriRef <- uri,
-			label <- label),
+			label <- label,
+			stringRepr <- c.instanceType.name),
 		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
 		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )
+	do {
+		if (c.hasPropertyRestrictionInvariant()){
+					for(p in c.extractPropertyRestrictions()) {
+			if (p.isCardinalityInvariant()) {
+				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+					p.getCardinalityValue());
+			} else {
+				if (p.isMaxCardinalityInvariant()) {
+					thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				} else {
+					if (p.isMinCardinalityInvariant()) {
+						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				}
+			}
+		}
+		}
+		}
+	}
  }
  
   rule UnionClass2OWLUnion {
@@ -524,11 +547,32 @@ rule RestrictedClass2OWLClass {
 			subClassOf <- c.superclasses,
 			OWLUnionOf <- c.getUnionClasses(),
 			uriRef <- uri,
-			label <- label),
+			label <- label,
+			stringRepr <- c.instanceType.name),
 		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
 		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )
+			do {
+		if (c.hasPropertyRestrictionInvariant()){
+					for(p in c.extractPropertyRestrictions()) {
+			if (p.isCardinalityInvariant()) {
+				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+					p.getCardinalityValue());
+			} else {
+				if (p.isMaxCardinalityInvariant()) {
+					thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				} else {
+					if (p.isMinCardinalityInvariant()) {
+						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				}
+			}
+		}
+		}
+		}
+	}
  }
  
  
@@ -598,7 +642,7 @@ rule addMinCardinalityRestrictionToClass ( c: Synthesis!ClassDef,
 			OWLOnProperty <- p
 		),
 		literal : OWL!TypedLiteral (
-			lexicalForm <- minCard,
+			lexicalForm <- minCard.toString(),
 			datatypeURI <- thisModule.getIntegerURI()
 		)
 }
@@ -613,7 +657,7 @@ rule addMaxCardinalityRestrictionToClass ( c: Synthesis!ClassDef,
 			OWLOnProperty <- p
 		),
 		literal : OWL!TypedLiteral (
-			lexicalForm <- maxCard,
+			lexicalForm <- maxCard.toString(),
 			datatypeURI <- thisModule.getIntegerURI()
 		)
 }
