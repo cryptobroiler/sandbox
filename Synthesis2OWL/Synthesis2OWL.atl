@@ -200,10 +200,10 @@ helper context Synthesis!CollectionComprehension def: isCardinalityInvariant(): 
 		in
 			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
 					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerValueDef)) then
-					if p.terms->asSequence()->at(1).name='cardinal' and 
-					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
+					if p.terms->asSequence()->at(1).name = 'cardinal' and 
+					   p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
 					then
-					true
+						true
 					else
 						false
 					endif
@@ -223,9 +223,9 @@ helper context Synthesis!CollectionComprehension def: isMinCardinalityInvariant(
 			if(p.terms->asSequence()->at(1).oclIsTypeOf(Synthesis!BuiltInFunction) and
 					p.terms->asSequence()->at(2).oclIsTypeOf(Synthesis!IntegerValueDef)) then
 					if p.terms->asSequence()->at(1).name='cardinal' and 
-					p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
+					   p.terms->asSequence()->at(1).terms->asSequence()->at(1).oclIsTypeOf(Synthesis!GetFunction)
 					then
-					true
+						true
 					else
 						false
 					endif
@@ -379,6 +379,9 @@ rule SynthesisModule2OWLOntology {
 			m.oclIsTypeOf(Synthesis!ModuleDef)
 		)
 	to
+		g : OWL!OWLGraph (
+			ontology <- o
+			),
 		o : OWL!OWLOntology (
 			OWLImports <- m.imports->asSequence(),
 			owlUniverse <- Synthesis!ClassDef.allInstances()->asSequence()->select(k | m.containedClasses->asSequence()->includes(k)),
@@ -389,6 +392,7 @@ rule SynthesisModule2OWLOntology {
 		uri : OWL!UniformResourceIdentifier (
 			name <- thisModule.addNamespace(m.name)
 		)
+
 }
 
 
@@ -543,7 +547,7 @@ rule RestrictedClass2OWLClass {
 					else false
 					endif)
 	to
-		oc: OWL!IntersectionClass (
+		oc: OWL!UnionClass (
 			subClassOf <- c.superclasses,
 			OWLUnionOf <- c.getUnionClasses(),
 			uriRef <- uri,

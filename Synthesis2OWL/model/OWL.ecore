@@ -2,7 +2,7 @@
 <xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
-  <ecore:EPackage name="RDFS" nsURI="http://RDFS.ecore" nsPrefix="">
+  <ecore:EPackage name="RDFS" nsURI="http://RDFS.ecore" nsPrefix="rdfs">
     <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#/0/RDFSResource">
       <eStructuralFeatures xsi:type="ecore:EReference" name="localName" ordered="false"
           upperBound="-1" eType="#/0/LocalName" containment="true" eOpposite="#/0/LocalName/document"/>
@@ -191,7 +191,7 @@
           upperBound="-1" eType="#/0/URIReference" eOpposite="#/0/URIReference/uri"/>
     </eClassifiers>
   </ecore:EPackage>
-  <ecore:EPackage name="OWL" nsURI="http://OWL.ecore">
+  <ecore:EPackage name="OWL" nsURI="http://OWL.ecore" nsPrefix="owl">
     <eClassifiers xsi:type="ecore:EClass" name="OWLOntology" eSuperTypes="#/0/RDFSResource">
       <eStructuralFeatures xsi:type="ecore:EReference" name="owlUniverse" ordered="false"
           upperBound="-1" eType="#/1/OWLUniverse" eOpposite="#/1/OWLUniverse/ontology"/>
@@ -356,9 +356,9 @@
           ordered="false" eType="#/1/AllValuesFromRestriction" eOpposite="#/1/AllValuesFromRestriction/OWLAllValuesFromDataRange"/>
     </eClassifiers>
   </ecore:EPackage>
-  <ecore:EPackage name="PrimitiveTypes" nsURI="http://PrimitiveTypes.ecore">
-    <eClassifiers xsi:type="ecore:EDataType" name="Boolean"/>
-    <eClassifiers xsi:type="ecore:EDataType" name="Integer"/>
-    <eClassifiers xsi:type="ecore:EDataType" name="String"/>
+  <ecore:EPackage name="PrimitiveTypes" nsURI="http://PrimitiveTypes.ecore" nsPrefix="owl-primitive">
+    <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceTypeName="Boolean"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceTypeName="Integer"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="String" instanceTypeName="String"/>
   </ecore:EPackage>
 </xmi:XMI>

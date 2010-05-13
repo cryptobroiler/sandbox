@@ -104,4 +104,11 @@
   <syn-form:GetFunction name="Y.creates" attribute="/57"/>
   <syn:ADTDef name="Composer"/>
   <syn:ClassDef name="composer" instanceType="/102"/>
+  <syn:ADTDef name="ManOfArt" attributes="/106"/>
+  <syn:ClassDef name="manofart" instanceType="/104"/>
+  <syn:AttributeDef name="manofartInvariant" attributeOf="/104" type="/107"/>
+  <syn:InvariantDef name="manofartInvariantBody" predicativeSpec="/108"/>
+  <syn-form:SetPredicate terms="/105 /109" symbol="&lt;="/>
+  <syn-form:BuiltInFunction name="union" terms="/12 /110"/>
+  <syn-form:BuiltInFunction name="union" terms="/18 /103"/>
 </xmi:XMI>
