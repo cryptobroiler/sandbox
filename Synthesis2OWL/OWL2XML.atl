@@ -244,7 +244,7 @@ rule makeCardinalityRestrictionSubClass( c : OWL!OWLClass,  s : OWL!CardinalityR
 		e : XML!Element ( name <- 'owl:Restriction', children <- Sequence{on, card} ),
 		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
 		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
-		card : XML!Element ( name <- 'owl:cardinality ', children <- Sequence{card_attr, card_text}	),
+		card : XML!Element ( name <- 'owl:cardinality', children <- Sequence{card_attr, card_text}	),
 		card_attr : XML!Attribute (	name <- 'rdf:datatype', value <- s.getDatatypeURI()	),
 		card_text : XML!Text ( name <- '#text',	value <- s.OWLCardinality.lexicalForm )
 }
@@ -259,7 +259,7 @@ rule makeMaxCardinalityRestrictionSubClass( c : OWL!OWLClass,  s : OWL!MaxCardin
 		e : XML!Element ( name <- 'owl:Restriction', children <- Sequence{on, card} ),
 		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
 		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
-		card : XML!Element ( name <- 'owl:maxCardinality ',	children <- Sequence{card_attr, card_text} ),
+		card : XML!Element ( name <- 'owl:maxCardinality',	children <- Sequence{card_attr, card_text} ),
 		card_attr : XML!Attribute (	name <- 'rdf:datatype', value <- s.getDatatypeURI()	),
 		card_text : XML!Text ( name <- '#text',	value <- s.OWLMaxCardinality.lexicalForm )
 }
@@ -277,7 +277,7 @@ rule makeMinCardinalityRestrictionSubClass( c : OWL!OWLClass,  s : OWL!MinCardin
 		),
 		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
 		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
-		card : XML!Element ( name <- 'owl:minCardinality ',	children <- Sequence{card_attr, card_text} ),
+		card : XML!Element ( name <- 'owl:minCardinality',	children <- Sequence{card_attr, card_text} ),
 		card_attr : XML!Attribute (	name <- 'rdf:datatype', value <- s.getDatatypeURI()	),
 		card_text : XML!Text ( name <- '#text',	value <- s.OWLMinCardinality.lexicalForm )
 }

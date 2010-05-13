@@ -1,0 +1,16 @@
+library XML2String;
+
+helper context XML!Root def: toString() : String = 
+	'<'+self.name + self.children->select(t|t.oclIsTypeOf(XML!Attribute))->iterate(i; acc : String =''|acc+i.toString()) 
+		+ '>\n' + self.children->select(t|t.oclIsTypeOf(XML!Element) or t.oclIsTypeOf(XML!Text))->iterate(i; acc : String =''|acc+i.toString())+
+		'</'+self.name +'>\n';
+helper context XML!Element def: toString() : String =
+	'<'+self.name +self.children->select(t|t.oclIsTypeOf(XML!Attribute))->
+		iterate(i; acc : String =''|acc+i.toString()) 
+		+ '>\n' + self.children->select(t|t.oclIsTypeOf(XML!Element) or t.oclIsTypeOf(XML!Text))->iterate(i; acc : String =''|acc+i.toString())+
+		'</'+self.name +'>\n';
+helper context XML!Attribute def: toString() : String = 
+	 ' ' + self.name + '=' + '"' + self.value + '"';
+helper context XML!Text def: toString() : String = 
+	self.value + '\n';
+	
