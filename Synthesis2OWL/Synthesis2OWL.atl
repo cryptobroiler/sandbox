@@ -13,6 +13,9 @@ helper def: primitiveTypeMap : Map(String, String) =
 		('int', 'http://www.w3.org/2001/XMLSchema#integer' )
 	};
 helper def: addNamespace( s : String ) : String = 'http://synthesis.ipi.ac.ru/' + s ;
+	
+helper context Synthesis!ADTDef def: getClassByADT() : Synthesis!ClassDef = 
+	Synthesis!ClassDef.allInstances()->select(c|if c.oclIsTypeOf(Synthesis!ClassDef) then c.instanceType=self else false endif)->first();
 helper context Synthesis!ClassDef def: hasInvariant() : Boolean =
 	self.instanceType.attributes->asSequence()->select(t|t.type.oclIsTypeOf(Synthesis!InvariantDef))->notEmpty();
 helper context Synthesis!ClassDef def: getInvariant() : Synthesis!Invariant =
@@ -172,7 +175,6 @@ helper context Synthesis!ClassDef def: getClassesFromPredicativeSpec() : Sequenc
 	in
 		p.splitToAtoms()->select(t|t.intersectionCheck())->collect(t|t.terms)->flatten()->
 			select(t | t.oclIsTypeOf(Synthesis!BuiltInFunction))->first().extractClassesRecursive();
-		--p.terms->asSequence()->select(t | t.oclIsTypeOf(Synthesis!BuiltInFunction))->first().extractClassesRecursive();
 
  
 helper def: getIntegerURI() : OclAny =
@@ -371,7 +373,14 @@ helper context Synthesis!Formula def: splitToAtoms(): Sequence(Synthesis!Atom) =
 -- =============================================================================
 -- RULES
 -- =============================================================================
-
+rule Schema2OWLGraph {
+   from
+      s : Synthesis!SchemaDef
+   to
+      g : OWL!OWLGraph (
+      	ontology <-s.modules->asSequence()
+	  )
+}
 
 rule SynthesisModule2OWLOntology {
 	from 
@@ -379,9 +388,6 @@ rule SynthesisModule2OWLOntology {
 			m.oclIsTypeOf(Synthesis!ModuleDef)
 		)
 	to
-		g : OWL!OWLGraph (
-			ontology <- o
-			),
 		o : OWL!OWLOntology (
 			OWLImports <- m.imports->asSequence(),
 			owlUniverse <- Synthesis!ClassDef.allInstances()->asSequence()->select(k | m.containedClasses->asSequence()->includes(k)),
@@ -392,7 +398,6 @@ rule SynthesisModule2OWLOntology {
 		uri : OWL!UniformResourceIdentifier (
 			name <- thisModule.addNamespace(m.name)
 		)
-
 }
 
 
@@ -409,6 +414,21 @@ rule ScalarType2RDFSDataType {
 		uri : OWL!UniformResourceIdentifier ( 
 			name <- thisModule.primitiveTypeMap.get(p.name) 
 		)
+}
+
+rule Attribute2DatatypeProperty {
+	from
+		p : Synthesis!AttributeDef(p.type.oclIsKindOf(Synthesis!ScalarDef))
+	to
+		d : OWL!OWLDatatypeProperty (
+			uriRef <- u,
+			domain <- p.attributeOf.getClassByADT(),
+			range <- p.type
+		),
+		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName ( name <- p.attributeOf.getClassByADT().name
+			+ '.' + p.name ),
+		uri : OWL!UniformResourceIdentifier ( name <- p.attributeOf.getClassByADT().name + '.' + p.name )	
 }
 
 
@@ -429,7 +449,7 @@ rule ScalarType2RDFSDataType {
 	to
 		oc : OWL!OWLClass (
 			subClassOf <- c.superclasses,
-			uriRef <- uri,
+			uriRef <- u,
 			label <- label,
 			stringRepr <- c.instanceType.name
 		),
@@ -456,7 +476,7 @@ rule RestrictedClass2OWLClass {
 	to
 				oc : OWL!OWLClass (
 			subClassOf <- c.superclasses,
-			uriRef <- uri,
+			uriRef <- u,
 			label <- label,
 			stringRepr <- c.instanceType.name
 		),
@@ -503,7 +523,7 @@ rule RestrictedClass2OWLClass {
 		oc: OWL!IntersectionClass (
 			subClassOf <- c.superclasses,
 			OWLIntersectionOf <- c.getIntersectionClasses(),
-			uriRef <- uri,
+			uriRef <- u,
 			label <- label,
 			stringRepr <- c.instanceType.name),
 		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
@@ -550,7 +570,7 @@ rule RestrictedClass2OWLClass {
 		oc: OWL!UnionClass (
 			subClassOf <- c.superclasses,
 			OWLUnionOf <- c.getUnionClasses(),
-			uriRef <- uri,
+			uriRef <- u,
 			label <- label,
 			stringRepr <- c.instanceType.name),
 		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
@@ -773,7 +793,6 @@ rule addComplementToClass ( complementClasses : Sequence(Synthesis!ClassDef),
 }
 
 
--- TODO: Property restrictions
 -- =============================================================================
 -- INDIVIDUALS
 -- =============================================================================
@@ -791,4 +810,65 @@ rule Frame2Individual {
 		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri),
 		l : OWL!LocalName (name <- i.name),
 		uri: OWL!UniformResourceIdentifier (name <- i.name)
+}
+
+rule FrameDataTypeSlot2Statement {
+	from
+	   s : Synthesis!SlotDef (
+	   	if s.oclIsTypeOf(Synthesis!SlotDef) then
+		if s.slotOf.oclIsTypeOf(Synthesis!FrameDef) then
+		   if s.values->asSequence()->first().typeOfValue.oclIsKindOf(Synthesis!ScalarDef) then true
+		   else false endif
+		else false endif
+		else false endif)
+	to
+		state : OWL!OWLStatement (
+			graph <- Synthesis!SchemaDef.allInstances()->asSequence()
+					->any( m | m.oclIsTypeOf(Synthesis!SchemaDef)),
+			RDFsubject <- s.slotOf,
+			RDFpredicate <- Synthesis!AttributeDef.allInstances()->any(a|a.type.oclIsTypeOf(Synthesis!ScalarDef) and a.name=s.name),
+			RDFobject <- o
+		),
+		o : OWL!Individual (
+			type <- s.values->asSequence()->first().typeOfValue,
+			uriRef <- u
+		),
+		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName (
+		 	name <- s.values->asSequence()->first().toString()
+		),
+		uri : OWL!UniformResourceIdentifier (
+		 	name <-  s.values->asSequence()->first().toString()
+		)
+}
+
+rule FrameObjectPropertySlot2Statement {
+	from
+	   s : Synthesis!SlotDef (
+	   	if s.oclIsTypeOf(Synthesis!SlotDef) then
+		if s.slotOf.oclIsTypeOf(Synthesis!FrameDef) then
+		   if s.values->asSequence()->first().typeOfValue.oclIsKindOf(Synthesis!ClassDef) then true
+		   else false endif
+		else false endif
+		else false endif)
+	to
+		state : OWL!OWLStatement (
+			graph <- Synthesis!SchemaDef.allInstances()->asSequence()
+					->any( m | m.oclIsTypeOf(Synthesis!SchemaDef)),
+			RDFsubject <- s.slotOf,
+			RDFpredicate <- Synthesis!AssociationMetaclass.allInstances()->any(a|a.type.oclIsTypeOf(
+				s.values->asSequence()->first().typeOfValue) and a.name=s.name),
+			RDFobject <- o
+		),
+		o : OWL!Individual (
+			type <- s.values->asSequence()->first().typeOfValue,
+			uriRef <- u
+		),
+		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName (
+		 	name <- s.values->asSequence()->first().toString()
+		),
+		uri : OWL!UniformResourceIdentifier (
+		 	name <-  s.values->asSequence()->first().toString()
+		)
 }

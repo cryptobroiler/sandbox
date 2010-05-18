@@ -20,10 +20,16 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.emftext.language.dot.resource.dot.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.m2m.atl.adt.builder.atlNature</nature>
 		<nature>org.emftext.language.ecore.resource.facade.nature</nature>
 		<nature>org.emftext.language.owl.resource.owl.nature</nature>
+		<nature>org.emftext.language.dot.resource.dot.nature</nature>
 	</natures>
 </projectDescription>
