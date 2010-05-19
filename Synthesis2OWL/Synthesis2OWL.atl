@@ -1108,34 +1108,3 @@ rule FrameObjectSlot2Statement {
 			RDFobject <- s.values->asSequence()->first()
 		)
 }
---
---rule FrameObjectPropertySlot2Statement {
---	from
---	   s : Synthesis!SlotDef (
---	   	if s.oclIsTypeOf(Synthesis!SlotDef) then
---		if s.slotOf.oclIsTypeOf(Synthesis!FrameDef) then
---		   if s.values->asSequence()->first().typeOfValue.oclIsKindOf(Synthesis!ClassDef) then true
---		   else false endif
---		else false endif
---		else false endif)
---	to
---		state : OWL!OWLStatement (
---			graph <- Synthesis!SchemaDef.allInstances()->asSequence()
---					->any( m | m.oclIsTypeOf(Synthesis!SchemaDef)),
---			RDFsubject <- s.slotOf,
---			RDFpredicate <- Synthesis!AssociationMetaclass.allInstances()->any(a|a.type.oclIsTypeOf(
---				s.values->asSequence()->first().typeOfValue) and a.name=s.name),
---			RDFobject <- o
---		),
---		o : OWL!Individual (
---			type <- s.values->asSequence()->first().typeOfValue,
---			uriRef <- u
---		),
---		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
---		l : OWL!LocalName (
---		 	name <- s.values->asSequence()->first().toString()
---		),
---		uri : OWL!UniformResourceIdentifier (
---		 	name <-  s.values->asSequence()->first().toString()
---		)
---}

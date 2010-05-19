@@ -1,0 +1,203 @@
+{ SynthesisWineOntology;
+  in: module;
+  class_specification:
+   {  Wine; in:class;
+      instance_type: {
+         in: type;
+         hasColor: WineColor;
+            metaslot in: HasColor; end;
+         hasTaste: WineTaste;
+            metaslot in: HasTaste; end;
+         madeFromGrape: Grape;
+            metaslot in: MadeFromGrape; end;
+         hasMaker: Factory;
+            metaslot in: HasMaker; end;
+         year: Integer;
+      }
+   },
+   { Grape; in:class;
+      instance_type: {
+         in: type;
+      }
+   },
+   { Factory; in: class;
+      instance_type: {
+         in: type;
+      }
+   },
+   { Winery; in: class;
+      superclass: Factory; 
+      instance_type: {
+         in: type;
+         supertype: Factory.inst;
+      }
+   },
+   { WineDescriptor; in: class;
+     instance_type: {
+      in: type;
+      wineDescriptorInvariant: {
+        in: predicative, invariant;
+        {predicative;
+          is_equal(WineDescriptor,union(WineTaste,WineColor))
+        }
+      }
+     }
+   },
+   { WineTaste; in: class;
+     superclass: WineDescriptor;
+      instance_type: {
+        in: type;
+        supertype: WineDescriptor.inst;
+        wineTasteInvariant: {
+          in: predicative, invariant;
+          {predicative;
+            is_equal(WineTaste,{Dry,OffDry,Sweet})
+          }
+        }
+      }
+   },
+   { WineColor; in: class;
+      superclass: WineDescriptor;
+      instance_type: {
+        in: type;
+        supertype: WineDescriptor.inst;
+        wineColorInvariant: {
+          in: predicative, invariant;
+          {predicative;
+            is_equal(WineColor,{Red,White,Rose})
+          }
+        }
+      }
+   },
+   
+   { RedWine; in: class;
+     superclass: Wine;
+     instance_type: {
+      in:type;
+      supertype: Wine.inst;
+      redWineInvariant: {
+        in: predicative, invariant;
+        {predicative;
+          is_equal(RedWine,{X/RedWine.inst|is_in(X.hasColor,Red)})
+        }
+      }
+      }
+    },
+    { WhiteWine; in: class;
+      superclass: Wine;
+      instance_type: {
+       in:type;
+       supertype: Wine.inst;
+       redWineInvariant: {
+         in: predicative, invariant;
+         {predicative;
+           is_equal(WhiteWine,{X/WhiteWine.inst|is_in(X.hasColor,White)})
+         }
+       }
+       }
+     },
+     { RoseWine; in: class;
+       superclass: Wine;
+       instance_type: {
+        in:type;
+        supertype: Wine.inst;
+        redWineInvariant: {
+          in: predicative, invariant;
+          {predicative;
+            is_equal(RoseWine,{X/RoseWine.inst|is_in(X.hasColor,Rose)})
+          }
+        }
+        }
+      },
+      { ExclusiveWine; in: class;
+        superclass: Wine;
+        instance_type: {
+         in:type;
+         supertype: Wine.inst;
+         exclusiveWineInvariant: {
+           in: predicative, invariant;
+           {predicative;
+             ExclusiveWine <= {X/ExclusiveWine.inst | ex q/Factory.inst (is_in(X.hasMaker, q) & is_in(Winerty, q))) & Exclusive <= {X/ExclusiveWine.inst|cardinal(X.madeFromGrape) ge 3}
+           }
+         }
+         }
+       },
+       { HasMaker;
+         in: association, metaclass;
+         instance_section:
+           {domain: Wine;
+            range: Factory;
+           }
+       },
+       { HasColor;
+          in: association, metaclass;
+          inverse: ColorOf
+          instance_section:
+            {domain: Wine;
+             range: WineColor;
+            }
+        },
+        { ColorOf;
+             in: association, metaclass;
+             inverse: HasColor;
+             instance_section:
+               {domain: WineColor;
+                range: Wine;
+               }
+           },
+        { HasTaste;
+           in: association, metaclass;
+           inverse: TasteOf;
+           instance_section:
+             {domain: Wine;
+              range: WineTaste;
+             }
+         },
+         { TasteOf;
+              in: association, metaclass;
+              inverse: HasTaste;
+              instance_section:
+                {domain: WineTaste;
+                 range: Wine;
+                }
+            },
+         { MadeFromGrape;
+            in: association, metaclass;
+            inverse: MadeInto;
+            instance_section:
+              {domain: Wine;
+               range: Grape;
+              }
+          },
+          { MadeInto;
+             in: association, metaclass;
+             inverse: MadeFromGrape;
+             instance_section:
+               {domain: Grape;
+                range: Wine;
+               }
+           },
+          { HasMaker;
+             in: association, metaclass;
+             instance_section:
+               {domain: Wine;
+                range: Factory;
+               }
+           }
+   frames:
+      { Red; in: WineColor;},
+      { White; in: WineColor;},
+      { Rose; in: WineColor;},
+      { Dry; in: WineTaste;},
+      { OffDry; in: WineTaste;},
+      { Sweet; in: WineTaste;},
+      { MerlotGrape; in: Grape;},
+      { FrenchWinery; in: Winery;}
+      { Merlot; in: Wine;
+        year: 1998;
+        madeFromGrape: MerlotGrape;
+        hasTaste: Dry;
+        hasColor: Red;
+        hasMaker: FrenchWinery;}
+               
+}
