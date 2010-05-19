@@ -23,9 +23,13 @@
 			<inmodel name="IN" model="OWL-Wine"/>
 			<outmodel name="OUT" model="XML-Wine" metamodel="XML"/>
 		</atl.launch>
+		<atl.launch  path="../OWL2XML-query.asm">
+			<inmodel name="IN" model="XML-Wine"/>
+			<library name="XML2String" path="../XML2String.asm"/>
+		</atl.launch>
 		
-		<!-- Saving transformation results -->
-		<atl.saveModel model="XML-Wine" path="../xml-sample.xmi"/>
+
+
 		
 	</target>
 

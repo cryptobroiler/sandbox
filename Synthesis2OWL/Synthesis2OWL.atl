@@ -1,3 +1,5 @@
+-- @path Synthesis=/Synthesis2OWL/model/Synthesis.ecore
+-- @path OWL=/Synthesis2OWL/model/OWL.ecore
 module Synthesis2OWL;
 create OUT:OWL from IN:Synthesis;
 -- =============================================================================
@@ -10,7 +12,7 @@ create OUT:OWL from IN:Synthesis;
 -- =============================================================================
 -- HELPERS
 -- =============================================================================
-	
+
 helper def: primitiveTypeMap : Map(String, String) =
 	Map {
 		('string', 'http://www.w3.org/2001/XMLSchema#string'),
@@ -526,7 +528,6 @@ rule Attribute2DatatypeProperty {
 		uri : OWL!UniformResourceIdentifier ( name <- p.attributeOf.getClassByADT().name + '.' + p.name )	
 }
 
-
  rule OrdinaryClass2OWLClass {
 	from
 		c : Synthesis!ClassDef (
@@ -585,10 +586,16 @@ rule Attribute2DatatypeProperty {
 		}
 	}
 		
-		}	
+		}	if(c.instances.notEmpty()) thisModule.createAllDifferentBlock(c);
 }
+	
 }
  
+rule createAllDifferentBlock(c: Synthesis!ClassDef) {
+	to
+		allDifferent: OWL!OWLAllDifferent (
+		OWLDistinctMembers <- c.instances)
+}
 rule Enumeration2EnumeratedClass {
 	from
 		c : Synthesis!ClassDef (
@@ -643,71 +650,11 @@ rule Enumeration2EnumeratedClass {
 		}
 	}
 		
-		}	
+		}
+		if(c.instances.notEmpty()) thisModule.createAllDifferentBlock(c);
 }
 }
--- 
--- 
---rule RestrictedClass2OWLClass {
---	from
---		c : Synthesis!ClassDef (
---				if c.oclIsTypeOf(Synthesis!ClassDef) then
---					if not c.instanceType.oclIsUndefined() 
---				 then if c.hasPropertyRestrictionInvariant() then
---				  true
---				  else false
---				  endif
---				  else
---				  	false
---					endif
---					else false
---					endif) 	
---	to
---				oc : OWL!OWLClass (
---			subClassOf <- c.superclasses,
---			uriRef <- u,
---			label <- label,
---			stringRepr <- c.instanceType.name
---		),
---		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
---		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
---		l : OWL!LocalName ( name <- c.instanceType.name ),
---		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
---	do {
---		for(p in c.extractPropertyRestrictions()) {
---			if (p.isCardinalityInvariant()) {
---				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
---					p.getCardinalityValue());
---			} else {
---				if (p.isMaxCardinalityInvariant()) {
---					thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
---						p.getCardinalityValue());
---				} else {
---					if (p.isMinCardinalityInvariant()) {
---						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
---						p.getCardinalityValue());
---				} else {
---					if (p.isHasValueInvariant()) {
---						if(p.getHasValueInvariantValue().isIndividual())
---							thisModule.addHasIndividualValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
---						else
---							thisModule.addHasLiteralValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
---				} else {
---					if (p.isSomeValuesFromInvariant()) {
---						thisModule.addSomeValuesFromRestrictionToClass(c,p.getSomeValuesInvariantOnProperty().classes->asSequence()->first(), p.getSomeValuesInvariantValue());
---				}else {
---					if (p.isAllValuesFromInvariant()) {
---						thisModule.addAllValuesFromRestrictionToClass(c,p.getAllValuesInvariantOnProperty().classes->asSequence()->first(), p.getAllValuesInvariantValue());
---					}
---				}
---			}
---		}
---		}
---	}
---		
---		}	
---}
---}
+
  rule IntersectionClass2OWLIntersection {
  	from 
 		c : Synthesis!ClassDef (
@@ -767,6 +714,7 @@ rule Enumeration2EnumeratedClass {
 	}
 		
 		}	
+		if(c.instances.notEmpty()) thisModule.createAllDifferentBlock(c);
 }
  }
  
@@ -829,6 +777,7 @@ rule Enumeration2EnumeratedClass {
 	}
 		
 		}	
+		if(c.instances.notEmpty()) thisModule.createAllDifferentBlock(c);
 }
  }
  
@@ -849,6 +798,17 @@ rule AssociationMetaclass2SOWLObjectProperty {
 		o_l : OWL!LocalName ( name <- am.name ),
 		o_uri : OWL!UniformResourceIdentifier ( name <- am.name )
 	do {
+		
+        for ( c in am.classes) {
+        	if (c.name='symmetric') 
+        		thisModule.addSymmetricProperty(am);
+
+        	if (c.name='inverse_functional') 
+        		thisModule.addInverseFunctionalProperty(am);
+   
+        	if (c.name='transitive')
+        		thisModule.addTransitiveProperty(am);
+        }
 		if (not (am.minCard.oclIsUndefined() or am.maxCard.oclIsUndefined())) {
 		if (( am.minCard = 1) and (am.maxCard = 1))
 				thisModule.addFunctionalProperty(am);
@@ -870,6 +830,22 @@ rule AssociationMetaclass2SOWLObjectProperty {
 rule addFunctionalProperty(am : Synthesis!AssociationMetaclassDef) {
 	to
 		 o : OWL!FunctionalProperty (
+		 	isDefinedBy <- am)
+}
+
+rule addTransitiveProperty(am : Synthesis!AssociationMetaclassDef) {
+	to
+		 o : OWL!TransitiveProperty (
+		 	isDefinedBy <- am)
+}
+rule addSymmetricProperty(am : Synthesis!AssociationMetaclassDef) {
+	to
+		 o : OWL!SymmetricProperty (
+		 	isDefinedBy <- am)
+}
+rule addInverseFunctionalProperty(am : Synthesis!AssociationMetaclassDef) {
+	to
+		 o : OWL!InverseFunctionalProperty (
 		 	isDefinedBy <- am)
 }
 -- =============================================================================

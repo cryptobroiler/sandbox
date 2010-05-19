@@ -28,7 +28,7 @@
   <syn:AssociationMetaclassDef name="HasTaste" domain="/10" range="/8" maxCard="1" minCard="1" inverse="/34"/>
   <syn:AttributeDef name="Wine.hasTaste" classes="/25"/>
   <syn:FrameDef name="Wine.hasTaste.metaslot"/>
-  <syn:AssociationMetaclassDef name="HasColor" domain="/10" range="/6" maxCard="1" minCard="1" inverse="/37"/>
+  <syn:AssociationMetaclassDef name="HasColor" classes="/112" domain="/10" range="/6" maxCard="1" minCard="1" inverse="/37"/>
   <syn:AttributeDef name="Wine.hasColor" classes="/28"/>
   <syn:FrameDef name="Wine.hasColor.metaslot"/>
   <syn:AssociationMetaclassDef name="MadeFromGrape" domain="/10" range="/2" inverse="/40"/>
@@ -111,4 +111,7 @@
   <syn:SlotDef typeOfValue="/9" name="Wine.hasTaste" values="/64" slotOf="/104"/>
   <syn:SlotDef typeOfValue="/3" name="Wine.madeFromGrape" values="/110" slotOf="/104"/>
   <syn:FrameDef name="MerlotGrape" classes="/2"/>
+  <syn:MetaclassDef name="symmetric"/>
+  <syn:MetaclassDef name="transitive" instances="/28"/>
+  <syn:MetaclassDef name="inverse_functional"/>
 </xmi:XMI>

@@ -421,6 +421,26 @@ rule DatatypeProperty2Element {
 		)
 }
 
+rule AllDifferent2Element {
+	from 
+		o : OWL!OWLAllDifferent
+	to 
+		e : XML!Element (
+			name <- 'owl:AllDifferent',
+			children <- distinctMembers,
+			parent <- OWL!OWLGraph.allInstances()->any( e | e.oclIsTypeOf(OWL!OWLGraph))
+			),
+		distinctMembers : XML!Element (
+			name <- 'owl:DistinctMembers',
+			children <- Sequence{distinctMembers_Att, o.OWLDistinctMembers->collect( e | 
+				thisModule.IndividualLiteral2Element( e ) )}
+		),
+		distinctMembers_Att : XML!Attribute (
+			name <- 'rdf:parseType',
+			value <- 'Collection'
+		)
+}
+
 rule ObjectProperty2Element {
 	from
 		o : OWL!OWLObjectProperty ( 
@@ -571,6 +591,23 @@ rule InverseFunctionalProperty2Element {
 					thisModule.makeSubProperty(o,s);
 			}
 		}
+}
+
+rule TransitiveProperty {
+	from
+		o : OWL!TransitiveProperty (
+			o.oclIsTypeOf( OWL!TransitiveProperty )
+		)
+	to
+		e : XML!Element (
+			name <- 'owl:TransitiveProperty',
+			children <- a,
+			parent <- OWL!OWLGraph.allInstances()->any( e | e.oclIsTypeOf(OWL!OWLGraph))
+		),
+		a : XML!Attribute (
+			name <- 'rdf:about',
+			value <- '#' + o.isDefinedBy->asSequence()->any( e | e.oclIsKindOf(OWL!Property ) ).getURI()
+		)
 }
 
 rule FunctionalProperty {

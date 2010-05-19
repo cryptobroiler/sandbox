@@ -5,5 +5,5 @@
 -- Author : Dennis Kopin (dennis.kopin@gmail.com)
 -- =============================================================================
 
-query OWL2XML_query = XML!Root.allInstances()->first().toString().writeTo('/Users/deus/XML-Museum.xml');
+query OWL2XML_query = XML!Root.allInstances()->first().toString().writeTo('/Users/deus/XML-Wine.xml');
 uses XML2String;
