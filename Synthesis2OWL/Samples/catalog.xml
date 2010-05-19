@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog id="file:/Users/deus/Development/eclipse-mdl/Synthesis2OWL/Samples/" prefer="public" xml:base="file:/Users/deus/Development/eclipse-mdl/Synthesis2OWL/Samples/" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <uri name="http://www.semanticweb.org/ontologies/2010/SampleWineOntology.owl" uri="Sample.owl"/>
-</catalog>

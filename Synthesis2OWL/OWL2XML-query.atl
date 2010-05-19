@@ -1,2 +1,9 @@
+-- =============================================================================
+-- OWL2XML query
+-- Version 1.0
+-- Release date : 19/05/2010
+-- Author : Dennis Kopin (dennis.kopin@gmail.com)
+-- =============================================================================
+
 query OWL2XML_query = XML!Root.allInstances()->first().toString().writeTo('/Users/deus/XML-Museum.xml');
 uses XML2String;

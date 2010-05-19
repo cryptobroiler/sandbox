@@ -20,6 +20,13 @@ helper context OWL!RDFSResource def: getLabel() : String =
 		self.label->select( e | e.oclIsTypeOf( OWL!PlainLiteral ))->first()
 	in if r.oclIsUndefined() then '' else r.lexicalForm endif	;
 
+helper context OWL!HasValueRestriction def: getDatatypeURI() : String = 
+	let d : OWL!URIReference = self.OWLHasLiteralValue.dataRange.datatype
+	in if not d.oclIsUndefined()
+		then d.uri.name
+		else ''
+	endif;
+
 helper context OWL!CardinalityRestriction def: getDatatypeURI() : String = 
 	let d : OWL!URIReference = self.OWLCardinality.datatypeURI
 	in if not d.oclIsUndefined()
@@ -40,6 +47,7 @@ helper context OWL!MinCardinalityRestriction def: getDatatypeURI() : String =
 		then d.uri.name
 		else ''
 	endif;
+
 
 -- =============================================================================
 -- RULES
@@ -120,6 +128,21 @@ rule Class2Element{
 				
 				if (s.oclIsTypeOf(OWL!MinCardinalityRestriction))
 					thisModule.makeMinCardinalityRestrictionSubClass(c,s);
+				if (s.oclIsTypeOf(OWL!HasValueRestriction)){
+					if (not s.OWLHasLiteralValue.oclIsUndefined()) {
+						thisModule.makeHasLiteralValueRestrictionSubClass(c,s);
+					}
+					else {
+						thisModule.makeHasIndividualValueRestrictionSubClass(c,s);
+					}
+				}
+				if (s.oclIsTypeOf(OWL!AllValuesFromRestriction)){
+					thisModule.makeAllValuesFromRestrictionSubClass(c,s);
+				}
+				if (s.oclIsTypeOf(OWL!SomeValuesFromRestriction)){
+					thisModule.makeSomeValuesFromRestrictionSubClass(c,s);
+				}
+			 		
 			 }
 		}
 }
@@ -162,6 +185,20 @@ rule UnionClass2Element{
 				
 				if (s.oclIsTypeOf(OWL!MinCardinalityRestriction))
 					thisModule.makeMinCardinalityRestrictionSubClass(c,s);
+				if (s.oclIsTypeOf(OWL!HasValueRestriction)){
+					if (not s.OWLHasLiteralValue.oclIsUndefined()) {
+						thisModule.makeHasLiteralValueRestrictionSubClass(c,s);
+					}
+					else {
+						thisModule.makeHasIndividualValueRestrictionSubClass(c,s);
+					}
+				}
+				if (s.oclIsTypeOf(OWL!AllValuesFromRestriction)){
+					thisModule.makeAllValuesFromRestrictionSubClass(c,s);
+				}
+				if (s.oclIsTypeOf(OWL!SomeValuesFromRestriction)){
+					thisModule.makeSomeValuesFromRestrictionSubClass(c,s);
+				}
 			 }
 		}
 }
@@ -212,6 +249,20 @@ rule IntersectionClass2Element{
 				
 				if (s.oclIsTypeOf(OWL!MinCardinalityRestriction))
 					thisModule.makeMinCardinalityRestrictionSubClass(c,s);
+				if (s.oclIsTypeOf(OWL!HasValueRestriction)){
+					if (not s.OWLHasLiteralValue.oclIsUndefined()) {
+						thisModule.makeHasLiteralValueRestrictionSubClass(c,s);
+					}
+					else {
+						thisModule.makeHasIndividualValueRestrictionSubClass(c,s);
+					}
+				}
+				if (s.oclIsTypeOf(OWL!AllValuesFromRestriction)){
+					thisModule.makeAllValuesFromRestrictionSubClass(c,s);
+				}
+				if (s.oclIsTypeOf(OWL!SomeValuesFromRestriction)){
+					thisModule.makeSomeValuesFromRestrictionSubClass(c,s);
+				}
 			 }
 		}
 }
@@ -234,6 +285,63 @@ rule makeSubClass( c : OWL!OWLClass,  s : OWL!OWLClass ) {
 		subClassAttr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.getURI() )
 }
 
+rule makeHasLiteralValueRestrictionSubClass( c : OWL!OWLClass,  s : OWL!HasValueRestriction ) {
+	to
+		x : XML!Element (
+			name <- 'rdfs:subClassOf',
+			children <-  e,
+			parent <- c
+		),
+		e : XML!Element ( name <- 'owl:Restriction', children <- Sequence{on, value} ),
+		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
+		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
+		value : XML!Element ( name <- 'owl:hasValue', children <- Sequence{--value_attr, 
+			value_text}	),
+		
+	   -- value_attr : XML!Attribute (	name <- 'rdf:datatype', value <- s.getDatatypeURI()	),
+		value_text : XML!Text ( name <- '#text',	value <- s.OWLHasLiteralValue.lexicalForm)
+}
+rule makeHasIndividualValueRestrictionSubClass( c : OWL!OWLClass,  s : OWL!HasValueRestriction ) {
+	to
+		x : XML!Element (
+			name <- 'rdfs:subClassOf',
+			children <-  e,
+			parent <- c
+		),
+		e : XML!Element ( name <- 'owl:Restriction', children <- Sequence{on, value} ),
+		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
+		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
+		value : XML!Element ( name <- 'owl:hasValue', children <- value_attr),
+		value_attr : XML!Attribute (	name <- 'rdf:resource', value <- '#'+s.OWLHasIndividualValue.getURI()	)
+}
+
+rule makeAllValuesFromRestrictionSubClass( c : OWL!OWLClass,  s : OWL!AllValuesFromRestriction ) {
+	to
+		x : XML!Element (
+			name <- 'rdfs:subClassOf',
+			children <-  e,
+			parent <- c
+		),
+		e : XML!Element ( name <- 'owl:Restriction', children <- Sequence{on, value} ),
+		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
+		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
+		value : XML!Element ( name <- 'owl:allValuesFrom', children <- value_attr),
+		value_attr : XML!Attribute (	name <- 'rdf:resource', value <- '#'+s.OWLAllValuesFromClass.getURI()	)
+}
+
+rule makeSomeValuesFromRestrictionSubClass( c : OWL!OWLClass,  s : OWL!SomeValuesFromRestriction ) {
+	to
+		x : XML!Element (
+			name <- 'rdfs:subClassOf',
+			children <-  e,
+			parent <- c
+		),
+		e : XML!Element ( name <- 'owl:Restriction', children <- Sequence{on, value} ),
+		on : XML!Element (	name <- 'owl:onProperty', children <- on_attr ),
+		on_attr : XML!Attribute ( name <- 'rdf:resource', value <- '#' + s.OWLOnProperty.getURI() ),
+		value : XML!Element ( name <- 'owl:SomeValuesFrom', children <- value_attr),
+		value_attr : XML!Attribute (	name <- 'rdf:resource', value <- '#'+s.OWLSomeValuesFromClass.getURI()	)
+}
 rule makeCardinalityRestrictionSubClass( c : OWL!OWLClass,  s : OWL!CardinalityRestriction ) {
 	to
 		x : XML!Element (

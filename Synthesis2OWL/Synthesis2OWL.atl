@@ -1,6 +1,12 @@
 module Synthesis2OWL;
 create OUT:OWL from IN:Synthesis;
-
+-- =============================================================================
+-- Synthesis2OWL
+-- Version 1.0
+-- Release date : 19/05/2010
+-- Author : Dennis Kopin (dennis.kopin@gmail.com)
+-- =============================================================================
+	
 -- =============================================================================
 -- HELPERS
 -- =============================================================================
@@ -12,8 +18,18 @@ helper def: primitiveTypeMap : Map(String, String) =
 		('boolean', 'http://www.w3.org/2001/XMLSchema#boolean'),
 		('int', 'http://www.w3.org/2001/XMLSchema#integer' )
 	};
-helper def: addNamespace( s : String ) : String = 'http://synthesis.ipi.ac.ru/' + s ;
 	
+helper def: addNamespace( s : String ) : String = 'http://synthesis.ipi.ac.ru/' + s ;
+helper def: getAttributeByName( s : String) : Synthesis!AttributeDef =
+	Synthesis!AttributeDef.allInstances()->select(c|c.name=s)->first();
+helper context Synthesis!ValueDef def: isIndividual() : Boolean = 
+	if self.oclIsTypeOf(Synthesis!FrameDef) then
+	   if not self.classes.oclIsUndefined() then
+	      true
+	   else false
+	   endif
+	else false
+	endif;
 helper context Synthesis!ADTDef def: getClassByADT() : Synthesis!ClassDef = 
 	Synthesis!ClassDef.allInstances()->select(c|if c.oclIsTypeOf(Synthesis!ClassDef) then c.instanceType=self else false endif)->first();
 helper context Synthesis!ClassDef def: hasInvariant() : Boolean =
@@ -23,8 +39,8 @@ helper context Synthesis!ClassDef def: getInvariant() : Synthesis!Invariant =
 	collect(t|t.type).first();
 
 helper context Synthesis!Atom def: intersectionCheck() : Boolean =
-		if self.oclIsTypeOf(Synthesis!SetPredicate) then
-		   if self.symbol = '<=' then
+		if self.oclIsTypeOf(Synthesis!BuiltInPredicate) then
+		   if self.symbol = 'is_equal' then
 		   let pterms:Sequence(Synthesis!ValueDef) = self.terms->asSequence()
 		   in
 		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
@@ -45,8 +61,8 @@ helper context Synthesis!Atom def: intersectionCheck() : Boolean =
 		endif;
 
 helper context Synthesis!Atom def: unionCheck() : Boolean =
-		if self.oclIsTypeOf(Synthesis!SetPredicate) then
-		   if self.symbol = '<=' then
+		if self.oclIsTypeOf(Synthesis!BuiltInPredicate) then
+		   if self.symbol = 'is_equal' then
 		   let pterms:Sequence(Synthesis!ValueDef) = self.terms->asSequence()
 		   in
 		   		if pterms->at(1)->oclIsTypeOf(Synthesis!ClassDef)
@@ -195,8 +211,8 @@ helper context Synthesis!AssociationMetaclassDef def: getClassesWithProperty(): 
 
 	
 helper context Synthesis!CollectionComprehension def: isCardinalityInvariant(): Boolean =
-	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate)
-		and self.formula.symbol = '==' 
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) then
+	   if self.formula.symbol = 'eq' 
 		then
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
@@ -214,11 +230,14 @@ helper context Synthesis!CollectionComprehension def: isCardinalityInvariant(): 
 			endif
 	else
 		false
-	endif;
+	endif
+	else
+		false
+		endif;
 
 helper context Synthesis!CollectionComprehension def: isMinCardinalityInvariant(): Boolean =
-	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) and
-		self.formula.symbol = '>=' 
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) then
+		if self.formula.symbol = 'ge' 
 		then
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
@@ -236,7 +255,7 @@ helper context Synthesis!CollectionComprehension def: isMinCardinalityInvariant(
 			endif
 	else
 		false
-	endif;
+	endif else false endif;
 helper context Synthesis!CollectionComprehension def: isSomeValuesFromInvariant(): Boolean = 
 	if self.formula.oclIsTypeOf(Synthesis!ExsistentiallyQuantifiedFormula) then 
 		let 
@@ -249,17 +268,61 @@ helper context Synthesis!CollectionComprehension def: isSomeValuesFromInvariant(
 						if op1.oclIsTypeOf(Synthesis!BuiltInPredicate) then
 							if op2.oclIsTypeOf(Synthesis!BuiltInPredicate) then
 								if op1.symbol = 'is_in' and op2.symbol = 'is_in' then
-									if (op1.terms->at(2)=self.formula.var) and 
-									   (op2.terms->at(2)=self.formula.var) and
-									   (op1.oclIsTypeOf(Synthesis!GetFunction)) and 
-									   (op2.oclIsTypeOf(Synthesis!ClassName)) then
+									if (op1.terms->at(2)=self.formula.variables->first()) and 
+									  (op2.terms->at(2)=self.formula.variables->first()) and
+									   (op1.terms->at(1).oclIsTypeOf(Synthesis!GetFunction)) and 
+									   (op2.terms->at(1).oclIsTypeOf(Synthesis!ClassDef)) then
 									   	true
-									else
-										false
-									endif
-								else
-									false
-								endif
+									else false endif
+								else false endif
+							else false endif
+						else false endif
+				else false endif
+			else false endif
+	else false endif;
+helper context Synthesis!CollectionComprehension def: getSomeValuesInvariantValue(): Synthesis!ClassDef =
+	self.formula.formula.formula.at(2).terms->at(1);
+helper context Synthesis!CollectionComprehension def: getSomeValuesInvariantOnProperty(): Synthesis!AttributeDef = 
+	self.formula.formula.formula.at(1).terms->at(1).attribute;
+
+helper context Synthesis!CollectionComprehension def: isAllValuesFromInvariant(): Boolean = 
+	if self.formula.oclIsTypeOf(Synthesis!UniversallyQuantifiedFormula) then 
+		let 
+			p : Synthesis!Formula = self.formula.formula
+		in
+			if (p.oclIsTypeOf(Synthesis!Implication)) then
+					let	op1:Synthesis!Formula = p.antecedent in
+					let op2:Synthesis!Formula = p.consequent in
+						if op1.oclIsTypeOf(Synthesis!BuiltInPredicate) then
+							if op2.oclIsTypeOf(Synthesis!BuiltInPredicate) then
+								if op1.symbol = 'is_in' and op2.symbol = 'is_in' then
+									if (op1.terms->at(2)=self.formula.variables->first()) and 
+									  (op2.terms->at(2)=self.formula.variables->first()) and
+									   (op1.terms->at(1).oclIsTypeOf(Synthesis!GetFunction)) and 
+									   (op2.terms->at(1).oclIsTypeOf(Synthesis!ClassDef)) then
+									   	true
+									else false endif
+								else false endif
+							else false endif
+						else false endif
+					else false endif
+	else false endif;
+helper context Synthesis!CollectionComprehension def: getAllValuesInvariantValue(): Synthesis!ClassDef =
+	self.formula.formula.consequent.terms->at(1);
+helper context Synthesis!CollectionComprehension def: getAllValuesInvariantOnProperty(): Synthesis!AttributeDef = 
+	self.formula.formula.antecedent.terms->at(1).attribute;
+helper context Synthesis!CollectionComprehension def: isHasValueInvariant(): Boolean = 
+	if self.formula.oclIsTypeOf(Synthesis!BuiltInPredicate) then 
+		let 
+			p : Synthesis!BuiltInPredicate = self.formula
+		in
+			if (p.symbol = 'is_in') then
+				if p.terms->size() = 2 then
+					let	op1:Synthesis!ValueDef = p.terms->at(1) in
+					let op2:Synthesis!ValueDef = p.terms->at(2) in
+						if op1.oclIsTypeOf(Synthesis!GetFunction) then
+							if op2.oclIsKindOf(Synthesis!ValueDef) then
+								true
 							else
 								false
 							endif
@@ -275,14 +338,19 @@ helper context Synthesis!CollectionComprehension def: isSomeValuesFromInvariant(
 	else
 		false
 	endif;
-										
+
+helper context Synthesis!CollectionComprehension def: getHasValueInvariantValue(): Synthesis!ValueDef =
+	self.formula.terms->at(2);
+helper context Synthesis!CollectionComprehension def: getHasValueInvariantOnProperty(): Synthesis!AttributeDef =
+	self.formula.terms->at(1).attribute;
+	
 									
 										
 			   
 
 helper context Synthesis!CollectionComprehension def: isMaxCardinalityInvariant(): Boolean =
-	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) and
-		self.formula.symbol = '<=' 
+	if self.formula.oclIsTypeOf(Synthesis!ArithmeticPredicate) then
+		if self.formula.symbol = 'le' 
 		then
 		let p : Synthesis!ArithmeticPredicate = self.formula 
 		in
@@ -300,10 +368,10 @@ helper context Synthesis!CollectionComprehension def: isMaxCardinalityInvariant(
 			endif
 	else
 		false
-	endif;
+	endif else false endif;
 
 helper context Synthesis!CollectionComprehension def: checkForPropertyRestrictions(): Boolean =
-	self.isCardinalityInvariant() or self.isMinCardinalityInvariant() or self.isMaxCardinalityInvariant();
+	self.isSomeValuesFromInvariant() or self.isHasValueInvariant() or self.isCardinalityInvariant() or self.isMinCardinalityInvariant() or self.isMaxCardinalityInvariant();
 
 helper context Synthesis!CollectionComprehension def: getCardinalityValue(): String =
 	self.formula.terms->asSequence()->at(2).value;
@@ -311,6 +379,16 @@ helper context Synthesis!CollectionComprehension def: getCardinalityValue(): Str
 helper context Synthesis!CollectionComprehension def: getOnProperty(): Synthesis!AttributeDef =
 	self.formula.terms->asSequence()->at(1).terms->asSequence()->at(1).attribute;
 
+helper context Synthesis!Atom def: enumerationCheck(): Boolean = 
+	let pterms : Sequence(Synthesis!ValueDef) = self.terms->asSequence()
+	in
+		if pterms->size() = 2 and
+		   pterms->at(1).oclIsTypeOf(Synthesis!ClassDef) and
+		   pterms->at(2).oclIsTypeOf(Synthesis!SetValueDef) then
+			true
+		else
+			false
+		endif;
 helper context Synthesis!Atom def: propertyRestrictionCheck(): Boolean = 
 	let pterms : Sequence(Synthesis!ValueDef) = self.terms->asSequence()
 	in
@@ -337,10 +415,27 @@ helper context Synthesis!ClassDef def: hasPropertyRestrictionInvariant(): Boolea
 		false
 	endif;
 
+helper context Synthesis!ClassDef def: hasEnumerationInvariant(): Boolean = 
+	if self.hasEquivalenceInvariant() then
+		let p : Synthesis!Formula = self.getInvariant().predicativeSpec
+		in 
+			if p.splitToAtoms()->select(t|t.enumerationCheck())->notEmpty() then
+		    	true
+			else 
+				false
+			endif
+	else
+		false
+	endif;
+
 helper context Synthesis!ClassDef def: extractPropertyRestrictions(): Sequence(Synthesis!CollectionComprehension) =
 	let p: Synthesis!Formula = self.getInvariant().predicativeSpec
 	in
 		p.splitToAtoms()->select(t|t.propertyRestrictionCheck())->collect(t|t.terms->asSequence()->at(2));
+helper context Synthesis!ClassDef def: extractEnumerations(): Sequence(Synthesis!SetValueDef) = 
+	let p: Synthesis!Formula = self.getInvariant().predicativeSpec
+	in
+		p.splitToAtoms()->select(t|t.enumerationCheck())->collect(t|t.terms->asSequence()->at(2));
 helper context Synthesis!ClassDef def: extractCollectionComprehension(): Synthesis!CollectionComprehension = 
 	self.getInvariant().predicativeSpec.terms->asSequence()->at(2);
 
@@ -437,9 +532,9 @@ rule Attribute2DatatypeProperty {
 		c : Synthesis!ClassDef (
 				if c.oclIsTypeOf(Synthesis!ClassDef) then
 					if not c.instanceType.oclIsUndefined() 
-				 then if c.hasInvariant() then
-				  false
-				  else true
+				 then if not c.isIntersectionClass() and not c.isUnionClass() and not c.hasEnumerationInvariant() then
+				  true
+				  else false
 				  endif
 				  else
 				  	false
@@ -457,34 +552,8 @@ rule Attribute2DatatypeProperty {
 		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
-}
- 
-rule RestrictedClass2OWLClass {
-	from
-		c : Synthesis!ClassDef (
-				if c.oclIsTypeOf(Synthesis!ClassDef) then
-					if not c.instanceType.oclIsUndefined() 
-				 then if c.hasPropertyRestrictionInvariant() then
-				  true
-				  else false
-				  endif
-				  else
-				  	false
-					endif
-					else false
-					endif) 	
-	to
-				oc : OWL!OWLClass (
-			subClassOf <- c.superclasses,
-			uriRef <- u,
-			label <- label,
-			stringRepr <- c.instanceType.name
-		),
-		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
-		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
-		l : OWL!LocalName ( name <- c.instanceType.name ),
-		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
 	do {
+		if (c.hasPropertyRestrictionInvariant()) 
 		for(p in c.extractPropertyRestrictions()) {
 			if (p.isCardinalityInvariant()) {
 				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
@@ -497,14 +566,148 @@ rule RestrictedClass2OWLClass {
 					if (p.isMinCardinalityInvariant()) {
 						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
 						p.getCardinalityValue());
+				} else {
+					if (p.isHasValueInvariant()) {
+						if(p.getHasValueInvariantValue().isIndividual())
+							thisModule.addHasIndividualValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+						else
+							thisModule.addHasLiteralValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+				} else {
+					if (p.isSomeValuesFromInvariant()) {
+						thisModule.addSomeValuesFromRestrictionToClass(c,p.getSomeValuesInvariantOnProperty().classes->asSequence()->first(), p.getSomeValuesInvariantValue());
+				}else {
+					if (p.isAllValuesFromInvariant()) {
+						thisModule.addAllValuesFromRestrictionToClass(c,p.getAllValuesInvariantOnProperty().classes->asSequence()->first(), p.getAllValuesInvariantValue());
+					}
 				}
 			}
 		}
 		}
 	}
 		
-	
+		}	
 }
+}
+ 
+rule Enumeration2EnumeratedClass {
+	from
+		c : Synthesis!ClassDef (
+				if c.oclIsTypeOf(Synthesis!ClassDef) then
+					if not c.instanceType.oclIsUndefined() then 
+						if c.hasEnumerationInvariant() then true
+				        else false endif
+				    else false endif
+				else false endif) 
+	to
+		oe : OWL!EnumeratedClass (
+			subClassOf <- c.superclasses,
+			OWLOneOf <- c.extractEnumerations()->collect(t|t.values),
+			uriRef <- u,
+			label <- label,
+			stringRepr <- c.instanceType.name
+		),
+		label : OWL!PlainLiteral ( lexicalForm <- c.name 	),
+		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+		l : OWL!LocalName ( name <- c.name ),
+		uri : OWL!UniformResourceIdentifier ( name <- c.name )
+	do {
+		if (c.hasPropertyRestrictionInvariant()) 
+		for(p in c.extractPropertyRestrictions()) {
+			if (p.isCardinalityInvariant()) {
+				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+					p.getCardinalityValue());
+			} else {
+				if (p.isMaxCardinalityInvariant()) {
+					thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				} else {
+					if (p.isMinCardinalityInvariant()) {
+						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+						p.getCardinalityValue());
+				} else {
+					if (p.isHasValueInvariant()) {
+						if(p.getHasValueInvariantValue().isIndividual())
+							thisModule.addHasIndividualValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+						else
+							thisModule.addHasLiteralValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+				} else {
+					if (p.isSomeValuesFromInvariant()) {
+						thisModule.addSomeValuesFromRestrictionToClass(c,p.getSomeValuesInvariantOnProperty().classes->asSequence()->first(), p.getSomeValuesInvariantValue());
+				}else {
+					if (p.isAllValuesFromInvariant()) {
+						thisModule.addAllValuesFromRestrictionToClass(c,p.getAllValuesInvariantOnProperty().classes->asSequence()->first(), p.getAllValuesInvariantValue());
+					}
+				}
+			}
+		}
+		}
+	}
+		
+		}	
+}
+}
+-- 
+-- 
+--rule RestrictedClass2OWLClass {
+--	from
+--		c : Synthesis!ClassDef (
+--				if c.oclIsTypeOf(Synthesis!ClassDef) then
+--					if not c.instanceType.oclIsUndefined() 
+--				 then if c.hasPropertyRestrictionInvariant() then
+--				  true
+--				  else false
+--				  endif
+--				  else
+--				  	false
+--					endif
+--					else false
+--					endif) 	
+--	to
+--				oc : OWL!OWLClass (
+--			subClassOf <- c.superclasses,
+--			uriRef <- u,
+--			label <- label,
+--			stringRepr <- c.instanceType.name
+--		),
+--		label : OWL!PlainLiteral ( lexicalForm <- c.instanceType.name ),
+--		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
+--		l : OWL!LocalName ( name <- c.instanceType.name ),
+--		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )	
+--	do {
+--		for(p in c.extractPropertyRestrictions()) {
+--			if (p.isCardinalityInvariant()) {
+--				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+--					p.getCardinalityValue());
+--			} else {
+--				if (p.isMaxCardinalityInvariant()) {
+--					thisModule.addMaxCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+--						p.getCardinalityValue());
+--				} else {
+--					if (p.isMinCardinalityInvariant()) {
+--						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
+--						p.getCardinalityValue());
+--				} else {
+--					if (p.isHasValueInvariant()) {
+--						if(p.getHasValueInvariantValue().isIndividual())
+--							thisModule.addHasIndividualValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+--						else
+--							thisModule.addHasLiteralValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+--				} else {
+--					if (p.isSomeValuesFromInvariant()) {
+--						thisModule.addSomeValuesFromRestrictionToClass(c,p.getSomeValuesInvariantOnProperty().classes->asSequence()->first(), p.getSomeValuesInvariantValue());
+--				}else {
+--					if (p.isAllValuesFromInvariant()) {
+--						thisModule.addAllValuesFromRestrictionToClass(c,p.getAllValuesInvariantOnProperty().classes->asSequence()->first(), p.getAllValuesInvariantValue());
+--					}
+--				}
+--			}
+--		}
+--		}
+--	}
+--		
+--		}	
+--}
+--}
  rule IntersectionClass2OWLIntersection {
  	from 
 		c : Synthesis!ClassDef (
@@ -531,8 +734,8 @@ rule RestrictedClass2OWLClass {
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )
 	do {
-		if (c.hasPropertyRestrictionInvariant()){
-					for(p in c.extractPropertyRestrictions()) {
+		if (c.hasPropertyRestrictionInvariant()) 
+		for(p in c.extractPropertyRestrictions()) {
 			if (p.isCardinalityInvariant()) {
 				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
 					p.getCardinalityValue());
@@ -544,12 +747,27 @@ rule RestrictedClass2OWLClass {
 					if (p.isMinCardinalityInvariant()) {
 						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
 						p.getCardinalityValue());
+				} else {
+					if (p.isHasValueInvariant()) {
+						if(p.getHasValueInvariantValue().isIndividual())
+							thisModule.addHasIndividualValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+						else
+							thisModule.addHasLiteralValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+				} else {
+					if (p.isSomeValuesFromInvariant()) {
+						thisModule.addSomeValuesFromRestrictionToClass(c,p.getSomeValuesInvariantOnProperty().classes->asSequence()->first(), p.getSomeValuesInvariantValue());
+				}else {
+					if (p.isAllValuesFromInvariant()) {
+						thisModule.addAllValuesFromRestrictionToClass(c,p.getAllValuesInvariantOnProperty().classes->asSequence()->first(), p.getAllValuesInvariantValue());
+					}
 				}
 			}
 		}
 		}
-		}
 	}
+		
+		}	
+}
  }
  
   rule UnionClass2OWLUnion {
@@ -577,9 +795,9 @@ rule RestrictedClass2OWLClass {
 		u : OWL!URIReference (	fragmentIdentifier <- l, uri <- uri ),
 		l : OWL!LocalName ( name <- c.instanceType.name ),
 		uri : OWL!UniformResourceIdentifier ( name <- c.instanceType.name )
-			do {
-		if (c.hasPropertyRestrictionInvariant()){
-					for(p in c.extractPropertyRestrictions()) {
+	do {
+		if (c.hasPropertyRestrictionInvariant()) 
+		for(p in c.extractPropertyRestrictions()) {
 			if (p.isCardinalityInvariant()) {
 				thisModule.addCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
 					p.getCardinalityValue());
@@ -591,12 +809,27 @@ rule RestrictedClass2OWLClass {
 					if (p.isMinCardinalityInvariant()) {
 						thisModule.addMinCardinalityRestrictionToClass(c,p.getOnProperty().classes->asSequence()->first(),
 						p.getCardinalityValue());
+				} else {
+					if (p.isHasValueInvariant()) {
+						if(p.getHasValueInvariantValue().isIndividual())
+							thisModule.addHasIndividualValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+						else
+							thisModule.addHasLiteralValueRestrictionToClass(c,p.getHasValueInvariantOnProperty().classes->asSequence()->first(),p.getHasValueInvariantValue());
+				} else {
+					if (p.isSomeValuesFromInvariant()) {
+						thisModule.addSomeValuesFromRestrictionToClass(c,p.getSomeValuesInvariantOnProperty().classes->asSequence()->first(), p.getSomeValuesInvariantValue());
+				}else {
+					if (p.isAllValuesFromInvariant()) {
+						thisModule.addAllValuesFromRestrictionToClass(c,p.getAllValuesInvariantOnProperty().classes->asSequence()->first(), p.getAllValuesInvariantValue());
+					}
 				}
 			}
 		}
 		}
-		}
 	}
+		
+		}	
+}
  }
  
  
@@ -613,9 +846,10 @@ rule AssociationMetaclass2SOWLObjectProperty {
 			subPropertyOf <- am.superclasses,
 			uriRef <- o_u),
 		o_u : OWL!URIReference ( fragmentIdentifier <- o_l, uri <- o_uri ),
-		o_l : OWL!LocalName ( name <- am.inverse.name + '.' + am.name ),
-		o_uri : OWL!UniformResourceIdentifier ( name <- am.inverse.name + '.' + am.name )
+		o_l : OWL!LocalName ( name <- am.name ),
+		o_uri : OWL!UniformResourceIdentifier ( name <- am.name )
 	do {
+		if (not (am.minCard.oclIsUndefined() or am.maxCard.oclIsUndefined())) {
 		if (( am.minCard = 1) and (am.maxCard = 1))
 				thisModule.addFunctionalProperty(am);
 		if(am.minCard = am.maxCard) {
@@ -627,7 +861,7 @@ rule AssociationMetaclass2SOWLObjectProperty {
 					thisModule.addMinCardinalityRestriction(am);
 					thisModule.addMaxCardinalityRestriction(am);
 			}
-		}
+		}}
 	}
 		
 
@@ -686,17 +920,27 @@ rule addMaxCardinalityRestrictionToClass ( c: Synthesis!ClassDef,
 		)
 }
 
-rule addHasValueRestrictionToClass ( c: Synthesis!ClassDef,
+rule addHasLiteralValueRestrictionToClass ( c: Synthesis!ClassDef,
 									 p: Synthesis!AssociationMetaclassDef,
 									 value: Synthesis!ValueDef) {
 	to
 		r: OWL!HasValueRestriction(
-			superclass <- c,
+			superClass <- c,
 			OWLHasLiteralValue <- literal,
 			OWLOnProperty <- p)
 			,
 			literal : OWL!RDFSLiteral (
-				lexicalForm <- value.toString())
+				lexicalForm <- value.name)
+}
+
+rule addHasIndividualValueRestrictionToClass ( c: Synthesis!ClassDef,
+									 p: Synthesis!AssociationMetaclassDef,
+									 value: Synthesis!ValueDef) {
+	to
+		r: OWL!HasValueRestriction(
+			superClass <- c,
+			OWLHasIndividualValue <- value,
+			OWLOnProperty <- p)
 }
 
 rule addSomeValuesFromRestrictionToClass (c: Synthesis!ClassDef,
@@ -704,7 +948,7 @@ rule addSomeValuesFromRestrictionToClass (c: Synthesis!ClassDef,
 										 fromClass: Synthesis!ClassDef) {
 	to
 		r: OWL!SomeValuesFromRestriction(
-			superclass <- c,
+			superClass <- c,
 			OWLSomeValuesFromClass <- fromClass,
 			OWLOnProperty <- p)
 }
@@ -714,7 +958,7 @@ rule addAllValuesFromRestrictionToClass (c: Synthesis!ClassDef,
 										 fromClass: Synthesis!ClassDef ) {
 	to
 		r: OWL!AllValuesFromRestriction(
-			superclass <- c,
+			superClass <- c,
 			OWLAllValueFromClass <- fromClass)
 }
 
@@ -800,8 +1044,8 @@ rule Frame2Individual {
 	from 
 		i : Synthesis!FrameDef (
 			i.oclIsTypeOf(Synthesis!FrameDef) and
-			i.classes->asSequence()->notEmpty() and 
-			Synthesis!ClassDef.allInstances()->asSequence()->includesAll(i.classes->asSequence())
+			i.classes->asSequence()->notEmpty() --and 
+			--Synthesis!ClassDef.allInstances()->asSequence()->includesAll(i.classes->asSequence())
 			)
 	to
 		owlIndividual: OWL!Individual(
@@ -817,58 +1061,81 @@ rule FrameDataTypeSlot2Statement {
 	   s : Synthesis!SlotDef (
 	   	if s.oclIsTypeOf(Synthesis!SlotDef) then
 		if s.slotOf.oclIsTypeOf(Synthesis!FrameDef) then
-		   if s.values->asSequence()->first().typeOfValue.oclIsKindOf(Synthesis!ScalarDef) then true
+		   if s.typeOfValue.oclIsKindOf(Synthesis!ScalarDef) then
+		      true
 		   else false endif
+		   
 		else false endif
-		else false endif)
+		else false endif
+		)
 	to
 		state : OWL!OWLStatement (
 			graph <- Synthesis!SchemaDef.allInstances()->asSequence()
 					->any( m | m.oclIsTypeOf(Synthesis!SchemaDef)),
 			RDFsubject <- s.slotOf,
-			RDFpredicate <- Synthesis!AttributeDef.allInstances()->any(a|a.type.oclIsTypeOf(Synthesis!ScalarDef) and a.name=s.name),
+			RDFpredicate <- Synthesis!AttributeDef.allInstances()->any(a|a.type=s.typeOfValue and a.name=s.name),
 			RDFobject <- o
 		),
 		o : OWL!Individual (
-			type <- s.values->asSequence()->first().typeOfValue,
+			type <- s.typeOfValue,
 			uriRef <- u
 		),
 		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
 		l : OWL!LocalName (
-		 	name <- s.values->asSequence()->first().toString()
+		 	name <- s.values->asSequence()->first().value.toString()
 		),
 		uri : OWL!UniformResourceIdentifier (
-		 	name <-  s.values->asSequence()->first().toString()
+		 	name <-  s.values->asSequence()->first().value.toString()
 		)
 }
-
-rule FrameObjectPropertySlot2Statement {
+rule FrameObjectSlot2Statement {
 	from
 	   s : Synthesis!SlotDef (
 	   	if s.oclIsTypeOf(Synthesis!SlotDef) then
 		if s.slotOf.oclIsTypeOf(Synthesis!FrameDef) then
-		   if s.values->asSequence()->first().typeOfValue.oclIsKindOf(Synthesis!ClassDef) then true
+		   if not s.typeOfValue.oclIsKindOf(Synthesis!ScalarDef) then true
 		   else false endif
+		   
 		else false endif
-		else false endif)
+		else false endif
+		)
 	to
 		state : OWL!OWLStatement (
 			graph <- Synthesis!SchemaDef.allInstances()->asSequence()
 					->any( m | m.oclIsTypeOf(Synthesis!SchemaDef)),
 			RDFsubject <- s.slotOf,
-			RDFpredicate <- Synthesis!AssociationMetaclass.allInstances()->any(a|a.type.oclIsTypeOf(
-				s.values->asSequence()->first().typeOfValue) and a.name=s.name),
-			RDFobject <- o
-		),
-		o : OWL!Individual (
-			type <- s.values->asSequence()->first().typeOfValue,
-			uriRef <- u
-		),
-		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
-		l : OWL!LocalName (
-		 	name <- s.values->asSequence()->first().toString()
-		),
-		uri : OWL!UniformResourceIdentifier (
-		 	name <-  s.values->asSequence()->first().toString()
+			RDFpredicate <- thisModule.getAttributeByName(s.name).classes->first(),
+			RDFobject <- s.values->asSequence()->first()
 		)
 }
+--
+--rule FrameObjectPropertySlot2Statement {
+--	from
+--	   s : Synthesis!SlotDef (
+--	   	if s.oclIsTypeOf(Synthesis!SlotDef) then
+--		if s.slotOf.oclIsTypeOf(Synthesis!FrameDef) then
+--		   if s.values->asSequence()->first().typeOfValue.oclIsKindOf(Synthesis!ClassDef) then true
+--		   else false endif
+--		else false endif
+--		else false endif)
+--	to
+--		state : OWL!OWLStatement (
+--			graph <- Synthesis!SchemaDef.allInstances()->asSequence()
+--					->any( m | m.oclIsTypeOf(Synthesis!SchemaDef)),
+--			RDFsubject <- s.slotOf,
+--			RDFpredicate <- Synthesis!AssociationMetaclass.allInstances()->any(a|a.type.oclIsTypeOf(
+--				s.values->asSequence()->first().typeOfValue) and a.name=s.name),
+--			RDFobject <- o
+--		),
+--		o : OWL!Individual (
+--			type <- s.values->asSequence()->first().typeOfValue,
+--			uriRef <- u
+--		),
+--		u : OWL!URIReference ( fragmentIdentifier <- l, uri <- uri ),
+--		l : OWL!LocalName (
+--		 	name <- s.values->asSequence()->first().toString()
+--		),
+--		uri : OWL!UniformResourceIdentifier (
+--		 	name <-  s.values->asSequence()->first().toString()
+--		)
+--}

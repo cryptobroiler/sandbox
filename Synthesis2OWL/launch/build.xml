@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="Synthesis2OWL" default="run" basedir=".">
+	<property name="synthesisPath" value="../model/Synthesis.ecore" />
+	<property name="owlPath" value="../model/OWL.ecore" />
+	<property name="xmlPath" value="../model/XML.ecore" />
+
+	<target name="run">
+		<!-- Loading metamodels -->
+		
+		<atl.loadModel name="Synthesis" metamodel="%EMF" path="${synthesisPath}"/>
+		<atl.loadModel name="OWL" metamodel="%EMF" path="${owlPath}"/>
+		<atl.loadModel name="XML" metamodel="%EMF" path="${xmlPath}"/>
+		<!-- Loading terminal models -->
+		<atl.loadModel name="Synthesis-Wine" metamodel="Synthesis" path="../Samples/Synthesis-Wine.xmi" />
+
+		<!-- Launching transformation: notice that IN and OUT identifiers come from the corresponding ATL module --> 
+		<atl.launch path="../Synthesis2OWL.asm">
+		    <inmodel name="IN" model="Synthesis-Wine"/>
+		    <outmodel name="OUT" model="OWL-Wine" metamodel="OWL"/>
+	    </atl.launch>
+		
+		<atl.launch path="../OWL2XML.asm">
+			<inmodel name="IN" model="OWL-Wine"/>
+			<outmodel name="OUT" model="XML-Wine" metamodel="XML"/>
+		</atl.launch>
+		
+		<!-- Saving transformation results -->
+		<atl.saveModel model="XML-Wine" path="../xml-sample.xmi"/>
+		
+	</target>
+
+</project>

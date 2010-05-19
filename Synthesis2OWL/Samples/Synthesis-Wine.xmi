@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:syn="http://Synthesis.ecore" xmlns:syn-form="http://Synthesis.ecore/Formulae">
+  <syn:SchemaDef name="WineSchema" modules="/1"/>
+  <syn:ModuleDef name="WineOntology" containedClasses="/2 /4 /6 /8 /10 /12 /14 /66 /68 /73" containedTypes="/3 /5 /7 /9 /11 /69 /67 /74 /13 /15 /17" schema="/0"/>
+  <syn:ClassDef name="grape" instanceType="/3" instances="/110" classInModule="/1"/>
+  <syn:ADTDef name="Grape" typeInModule="/1" values="/109"/>
+  <syn:ClassDef name="wineDescriptor" instanceType="/5" classInModule="/1" subclasses="/6 /8"/>
+  <syn:ADTDef name="WineDescriptor" typeInModule="/1" attributes="/100" subtypes="/9 /7"/>
+  <syn:ClassDef name="wineColor" instanceType="/7" instances="/49 /51 /52" classInModule="/1" superclasses="/4"/>
+  <syn:ADTDef name="WineColor" typeInModule="/1" values="/107" attributes="/92" supertypes="/5"/>
+  <syn:ClassDef name="wineTaste" instanceType="/9" instances="/63 /64 /65" classInModule="/1" superclasses="/4"/>
+  <syn:ADTDef name="WineTaste" typeInModule="/1" values="/108" attributes="/96" supertypes="/5"/>
+  <syn:ClassDef name="wine" instanceType="/11" instances="/104" classInModule="/1" subclasses="/16 /12 /14 /73"/>
+  <syn:ADTDef name="Wine" typeInModule="/1" attributes="/24 /71" subtypes="/17 /13 /15 /74"/>
+  <syn:ClassDef name="redWine" instanceType="/13" classInModule="/1" superclasses="/10"/>
+  <syn:ADTDef name="RedWine" typeInModule="/1" attributes="/43" supertypes="/11"/>
+  <syn:ClassDef name="whiteWine" instanceType="/15" classInModule="/1" superclasses="/10"/>
+  <syn:ADTDef name="WhiteWine" typeInModule="/1" attributes="/53" supertypes="/11"/>
+  <syn:ClassDef name="roseWine" instanceType="/17" superclasses="/10"/>
+  <syn:ADTDef name="RoseWine" typeInModule="/1" attributes="/58" supertypes="/11"/>
+  <syn:IntegerDef name="int" unsigned="false"/>
+  <syn:IntegerDef name="uint" values="/105" unsigned="true"/>
+  <syn:StringDef name="string"/>
+  <syn:EnumDef name="boolean" values="/22 /23"/>
+  <syn:StringValueDef typeOfValue="/21" value="true"/>
+  <syn:StringValueDef typeOfValue="/21" value="false"/>
+  <syn:AttributeDef name="Wine.year" attributeOf="/11" type="/19"/>
+  <syn:AssociationMetaclassDef name="HasTaste" domain="/10" range="/8" maxCard="1" minCard="1" inverse="/34"/>
+  <syn:AttributeDef name="Wine.hasTaste" classes="/25"/>
+  <syn:FrameDef name="Wine.hasTaste.metaslot"/>
+  <syn:AssociationMetaclassDef name="HasColor" domain="/10" range="/6" maxCard="1" minCard="1" inverse="/37"/>
+  <syn:AttributeDef name="Wine.hasColor" classes="/28"/>
+  <syn:FrameDef name="Wine.hasColor.metaslot"/>
+  <syn:AssociationMetaclassDef name="MadeFromGrape" domain="/10" range="/2" inverse="/40"/>
+  <syn:AttributeDef name="Wine.madeFromGrape" classes="/31"/>
+  <syn:FrameDef name="Wine.madeFromGrape.metaslot"/>
+  <syn:AssociationMetaclassDef name="TasteOf" domain="/8" range="/10" inverse="/25"/>
+  <syn:AttributeDef name="Taste.tasteOf"/>
+  <syn:FrameDef name="Taste.tasteOf.metaslot"/>
+  <syn:AssociationMetaclassDef name="ColorOf" domain="/6" range="/10" inverse="/28"/>
+  <syn:AttributeDef name="Color.colorOf"/>
+  <syn:FrameDef name="Color.colorOf.metaslot"/>
+  <syn:AssociationMetaclassDef name="MadeInto" domain="/2" range="/10" inverse="/31"/>
+  <syn:AttributeDef name="Grape.madeInto"/>
+  <syn:FrameDef name="Grape.madeIntoMetaslot"/>
+  <syn:AttributeDef name="RedWine.invariant" attributeOf="/13" type="/44"/>
+  <syn:InvariantDef name="RedWine.invariantBody" predicativeSpec="/45"/>
+  <syn-form:SetPredicate stringRepr="RedWine &lt;= {}" terms="/12 /46" symbol="&lt;="/>
+  <syn-form:CollectionComprehension vars="/47" formula="/50"/>
+  <syn-form:Variable name="W"/>
+  <syn-form:GetFunction name="W.hasColor" attribute="/29"/>
+  <syn:FrameDef name="Red" classes="/6"/>
+  <syn-form:BuiltInPredicate stringRepr="is_in(W.hasColor,Red)" terms="/48 /49" symbol="is_in"/>
+  <syn:FrameDef name="Rose" classes="/6"/>
+  <syn:FrameDef name="White" classes="/6"/>
+  <syn:AttributeDef name="WhiteWine.invariant" attributeOf="/15" type="/54"/>
+  <syn:InvariantDef name="WhiteWine.invariantBody" predicativeSpec="/55"/>
+  <syn-form:SetPredicate stringRepr="WhiteWine &lt;= {}" terms="/14 /56" symbol="&lt;="/>
+  <syn-form:CollectionComprehension vars="/47" formula="/57"/>
+  <syn-form:BuiltInPredicate stringRepr="is_in(W.hasColor,White)" terms="/48 /52" symbol="is_in"/>
+  <syn:AttributeDef name="RoseWine.invariant" attributeOf="/17" type="/59"/>
+  <syn:InvariantDef name="RoseWine.invariantBody" predicativeSpec="/60"/>
+  <syn-form:SetPredicate stringRepr="RoseWine &lt;= {}" terms="/16 /61" symbol="&lt;="/>
+  <syn-form:CollectionComprehension vars="/47" formula="/62"/>
+  <syn-form:BuiltInPredicate stringRepr="is_in(W.hasColor,Rose)" terms="/48 /51" symbol="is_in"/>
+  <syn:FrameDef name="Sweet" classes="/8"/>
+  <syn:FrameDef name="Dry" classes="/8"/>
+  <syn:FrameDef name="Off Dry" classes="/8"/>
+  <syn:ClassDef name="factory" instanceType="/67" classInModule="/1" subclasses="/68"/>
+  <syn:ADTDef name="Factory" typeInModule="/1" subtypes="/69"/>
+  <syn:ClassDef name="winery" instanceType="/69" classInModule="/1" superclasses="/66"/>
+  <syn:ADTDef name="Winery" typeInModule="/1" supertypes="/67"/>
+  <syn:AssociationMetaclassDef name="HasMaker" domain="/10" range="/66"/>
+  <syn:AttributeDef name="Wine.hasMaker" classes="/70" attributeOf="/11"/>
+  <syn:FrameDef name="Wine.hasMaker.metaslot"/>
+  <syn:ClassDef name="exclusiveWine" instanceType="/74" classInModule="/1" superclasses="/10"/>
+  <syn:ADTDef name="ExclusiveWine" typeInModule="/1" attributes="/75" supertypes="/11"/>
+  <syn:AttributeDef name="ExclusiveWine.invariant" attributeKind="" attributeOf="/74" type="/76"/>
+  <syn:InvariantDef name="ExclusiveWine.invariantBody" predicativeSpec="/80"/>
+  <syn-form:Variable name="V"/>
+  <syn-form:GetFunction name="W.madeFromGrape" attribute="/32"/>
+  <syn-form:GetFunction name="W.hasMaker" attribute="/71"/>
+  <syn-form:Conjunction stringRepr="(cardinality) &amp; (someValuesFrom)" formula="/81 /86"/>
+  <syn-form:SetPredicate stringRepr="eWine &lt;= {cardinal...}" terms="/73 /82" symbol="&lt;="/>
+  <syn-form:CollectionComprehension vars="/47" formula="/83"/>
+  <syn-form:ArithmeticPredicate stringRepr="cardinal(W.madeFromGrape) >= 3" terms="/84 /85" symbol="ge"/>
+  <syn-form:BuiltInFunction name="cardinal" terms="/78"/>
+  <syn:IntegerValueDef value="3"/>
+  <syn-form:SetPredicate stringRepr="eWine &lt;= {someValuesFrom...}" terms="/73 /87"/>
+  <syn-form:CollectionComprehension vars="/47" formula="/88"/>
+  <syn-form:ExsistentiallyQuantifiedFormula stringRepr="ex V (is_in(W.hasMaker, V) &amp; is_in(winery,V))" formula="/89" variables="/77"/>
+  <syn-form:Conjunction stringRepr="is_in(W.hasMaker, V) &amp; is_in(winery,V)" formula="/90 /91"/>
+  <syn-form:BuiltInPredicate stringRepr="is_in(W.hasMaker, V)" terms="/79 /77" symbol="is_in"/>
+  <syn-form:BuiltInPredicate stringRepr="is_in(winery,V)" terms="/68 /77" symbol="is_in"/>
+  <syn:AttributeDef name="WineColor.invariant" attributeOf="/7" type="/93"/>
+  <syn:InvariantDef name="WineColor.invariantBody" predicativeSpec="/94"/>
+  <syn-form:BuiltInPredicate stringRepr="is_equal(WineColor,{Red,Rose,White}" terms="/6 /95" symbol="is_equal"/>
+  <syn:SetValueDef values="/49 /51 /52"/>
+  <syn:AttributeDef name="WineTaste.invariant" attributeOf="/9" type="/97"/>
+  <syn:InvariantDef name="WineTaste.invariantBody" specification="" predicativeSpec="/98"/>
+  <syn-form:BuiltInPredicate stringRepr="is_equal(WineTaste,{Dry,Off Dry,Sweet})" terms="/8 /99" symbol="is_equal"/>
+  <syn:SetValueDef values="/63 /64 /65"/>
+  <syn:AttributeDef name="WineDescriptor.invariant" attributeKind="" attributeOf="/5" type="/101"/>
+  <syn:InvariantDef name="WineDescriptor.invariantBody" specification="" predicativeSpec="/102"/>
+  <syn-form:BuiltInPredicate stringRepr="is_equal(WineDescriptor,union(WineTaste,WineColor))" terms="/4 /103" symbol="is_equal"/>
+  <syn-form:BuiltInFunction name="union" terms="/8 /6"/>
+  <syn:FrameDef name="Merlot" classes="/10" slots="/105 /107 /108 /109"/>
+  <syn:SlotDef typeOfValue="/19" name="Wine.year" values="/106" slotOf="/104"/>
+  <syn:IntegerValueDef value="1998"/>
+  <syn:SlotDef typeOfValue="/7" name="Wine.hasColor" values="/49" slotOf="/104"/>
+  <syn:SlotDef typeOfValue="/9" name="Wine.hasTaste" values="/64" slotOf="/104"/>
+  <syn:SlotDef typeOfValue="/3" name="Wine.madeFromGrape" values="/110" slotOf="/104"/>
+  <syn:FrameDef name="MerlotGrape" classes="/2"/>
+</xmi:XMI>

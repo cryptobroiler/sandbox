@@ -1,5 +1,12 @@
 library XML2String;
 
+-- =============================================================================
+-- XML2String
+-- Version 1.0
+-- Release date : 19/05/2010
+-- Author : Dennis Kopin (dennis.kopin@gmail.com)
+-- =============================================================================
+	
 helper context XML!Root def: toString() : String = 
 	'<'+self.name + self.children->select(t|t.oclIsTypeOf(XML!Attribute))->iterate(i; acc : String =''|acc+i.toString()) 
 		+ '>\n' + self.children->select(t|t.oclIsTypeOf(XML!Element) or t.oclIsTypeOf(XML!Text))->iterate(i; acc : String =''|acc+i.toString())+
