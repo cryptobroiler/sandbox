@@ -13,6 +13,7 @@ create OUT:OWL from IN:Synthesis;
 -- HELPERS
 -- =============================================================================
 
+
 helper def: primitiveTypeMap : Map(String, String) =
 	Map {
 		('string', 'http://www.w3.org/2001/XMLSchema#string'),
@@ -20,7 +21,7 @@ helper def: primitiveTypeMap : Map(String, String) =
 		('boolean', 'http://www.w3.org/2001/XMLSchema#boolean'),
 		('int', 'http://www.w3.org/2001/XMLSchema#integer' )
 	};
-	
+
 helper def: addNamespace( s : String ) : String = 'http://synthesis.ipi.ac.ru/' + s ;
 helper def: getAttributeByName( s : String) : Synthesis!AttributeDef =
 	Synthesis!AttributeDef.allInstances()->select(c|c.name=s)->first();
